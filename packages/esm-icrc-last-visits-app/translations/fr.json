@@ -1,0 +1,9 @@
+{
+    "lastNumVisits": "Dernières {{numberOfLastVisits}} visites",
+    "from": "De",
+    "to": "À",
+    "completedForms": "Formulaires complétés",
+    "attachments": "Pièces jointes",
+    "noPastVisitsAvailable": "Aucune visite passée à afficher",
+    "visits": "visites"
+}

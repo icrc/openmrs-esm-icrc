@@ -1,0 +1,29 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@use '~@openmrs/esm-styleguide/src/vars' as *;
+@use '../../../style.scss' as *;
+
+.link {
+  text-decoration: none;
+}
+
+.tableCell,
+.interactiveText01 {
+  color: $interactive-01;
+}
+
+.desktopRow,
+.desktopHeader {
+  height: spacing.$spacing-07 !important;
+}
+
+.tabletRow,
+.tabletHeader {
+  height: spacing.$spacing-09 !important;
+}
+
+.flexRow {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}

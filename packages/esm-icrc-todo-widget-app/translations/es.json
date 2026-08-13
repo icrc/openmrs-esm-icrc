@@ -1,0 +1,16 @@
+{
+  "appointmentsToConfirm": "Cita pendiente de confirmar",
+  "todoCompleted": "La tarea se ha completado con éxito",
+  "todoCompleteError": "Se ha producido un error inesperado al ejecutar la tarea",
+  "todoAccepted": "La tarea se ha aceptado correctamente",
+  "todoAcceptedError": "Se ha producido un error inesperado al aceptar una tarea para completarla",
+  "dateTime": "Fecha y hora",
+  "hsuDetails": "Detalles de HSU",
+  "todo": "Por Hacer",
+  "actions": "Acciones",
+  "print": "Imprimir",
+  "accept": "Aceptar",
+  "done": "Hecho",
+  "myTodos": "Mis Por Hacer",
+  "noTodosToDisplay": "No hay acciones Por Hacer para mostrar"
+}

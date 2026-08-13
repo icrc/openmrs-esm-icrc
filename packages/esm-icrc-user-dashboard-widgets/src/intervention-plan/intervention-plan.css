@@ -1,0 +1,20 @@
+.widgetHeader {
+  color: #00463f;
+  font-size: 22px;
+  text-align: left;
+  background: white;
+  border-bottom: #00463f 4px solid;
+  height: 40px;
+}
+
+.title {
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.svgIcon {
+  display: inline-block;
+  width: 34px;
+  height: 28px;
+  vertical-align: middle;
+}

@@ -1,0 +1,85 @@
+name: Publish
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  id-token: write  # Required for npm trusted publishers (OIDC)
+  contents: write
+  pull-requests: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: 'yarn'
+          cache-dependency-path: '**/yarn.lock'
+          registry-url: "https://registry.npmjs.org"
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Set pre-release version
+        if: github.event_name == 'push'
+        run: npm version --no-git-tag-version "$(node -e "console.log(require('./package.json').version)")-pre.${{ github.run_number }}"
+
+      - name: Run lint, type checks and tests
+        run: yarn verify
+
+      - name: Yarn build
+        run: yarn build
+
+      - name: Publish pre-release
+        if: github.event_name == 'push'
+        run: npm publish --provenance --tag pre
+
+      - name: Publish release
+        if: github.event_name == 'workflow_dispatch'
+        run: npm publish --provenance
+
+      - name: Git Config
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+
+      - name: Git tag
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          CURRENT_PROJECT_VERSION=$(node -e "console.log(require('./package.json').version)")
+          git tag "$CURRENT_PROJECT_VERSION"
+          git push origin "$CURRENT_PROJECT_VERSION"
+          gh release create $CURRENT_PROJECT_VERSION
+
+      - name: Move to next Version
+        if: github.event_name == 'workflow_dispatch'
+        run: npm version --no-git-tag-version "$(node -e "console.log(require('semver').inc(require('./package.json').version, 'minor'))")"
+
+      # This step creates a PR to bump the version to the next minor snapshot.
+      # The PR must be accepted and merged to prepare main for the next release cycle.
+      - name: Create Branch and PR for next Version preparation
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          CURRENT_PROJECT_VERSION=$(node -e "console.log(require('./package.json').version)")
+          BRANCH_NAME="move-to-$CURRENT_PROJECT_VERSION"
+          git push origin --delete "$BRANCH_NAME" 2>/dev/null || true
+          git checkout -b "$BRANCH_NAME"
+          git commit -a -m "[skip ci] change version to new snapshot $CURRENT_PROJECT_VERSION"
+          git push origin "$BRANCH_NAME"
+          gh pr create -B main -H $BRANCH_NAME --title "Update Version to $CURRENT_PROJECT_VERSION" --body 'Created by "Do Release" workflow'
+          echo "Please, accept the PR: Update Version to $CURRENT_PROJECT_VERSION"

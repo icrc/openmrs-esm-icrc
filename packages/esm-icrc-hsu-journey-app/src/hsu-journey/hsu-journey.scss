@@ -1,0 +1,69 @@
+@use "@carbon/styles/scss/type";
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+.widgetCard {
+  border: 1px solid $ui-03;
+}
+
+.diagnosisLabel {
+  @include type.type-style('heading-compact-01');
+  color: $text-02;
+  margin-top: 5px;
+  margin-left: 5px
+}
+
+.esmpatientmedicationscard {
+  justify-content: space-between;
+  align-items: center;
+  padding: .75rem 0 .75rem 1rem;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.blue {
+  color: #0f62fe;
+  margin-right: 2px;
+}
+
+.journeystep {
+  margin-right: 2px;
+  margin-top: 14px;
+}
+
+.completedStep {
+  position: relative;
+  border-left: 4px solid #0f62fe;
+}
+
+.firstStep::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: -2px;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: #0f62fe;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.incompleteStep {
+  position: relative;
+  border-left: 4px dotted #0f62fe;
+  overflow: visible;
+}
+
+.incompleteStep::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  bottom: 0;
+  transform: translate(-50%, 60%);
+
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 10px solid #0f62fe;  /* arrow color */
+}

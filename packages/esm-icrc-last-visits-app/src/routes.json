@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "extensions": [
+    {
+      "name": "last-visits-widget",
+      "component": "lastVisits",
+      "slot": "prp-dashboard-slot",
+      "meta": {
+        "fullWidth": true
+      },
+      "order": 1
+    }
+  ],
+  "pages": []
+}

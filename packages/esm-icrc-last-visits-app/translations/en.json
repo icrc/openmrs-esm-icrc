@@ -1,0 +1,9 @@
+{
+  "lastNumVisits": "Last {{numberOfLastVisits}} visits",
+  "from": "From",
+  "to": "To",
+  "completedForms": "Completed forms",
+  "attachments": "Attachments",
+  "noPastVisitsAvailable": "There are no past visits to display",
+  "visits": "Visits"
+}

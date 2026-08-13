@@ -1,0 +1,16 @@
+{
+  "appointmentsToConfirm": "مواعيد بانتظار التأكيد",
+  "todoCompleted": "تم إكمال المهمة بنجاح",
+  "todoCompleteError": "حدث خطأ غير متوقع أثناء تنفيذ المهمة",
+  "todoAccepted": "تم قبول المهمة بنجاح",
+  "todoAcceptedError": "حدث خطأ غير متوقع أثناء قبول المهمة للتنفيذ",
+  "dateTime": "التاريخ والوقت",
+  "hsuDetails": "تفاصيل وحدة الخدمات الصحية",
+  "todo": "المهام المطلوبة",
+  "actions": "الإجراءات",
+  "print": "طباعة",
+  "accept": "قبول",
+  "done": "تم",
+  "myTodos": "مهامي",
+  "noTodosToDisplay": "لا توجد مهام لعرضها"
+}

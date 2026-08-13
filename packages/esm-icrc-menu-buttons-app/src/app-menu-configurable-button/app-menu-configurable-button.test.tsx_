@@ -1,0 +1,37 @@
+import React from 'react';
+import { screen, render } from '@testing-library/react';
+import { useConfig } from '@openmrs/esm-framework';
+import ConfigurableAppMenuButton from './app-menu-configurable-button.component';
+
+const mockUseConfig = useConfig as jest.Mock;
+
+jest.mock('@openmrs/esm-framework', () => {
+  const originalModule = jest.requireActual('@openmrs/esm-framework');
+
+  return {
+    ...originalModule,
+    useConfig: jest.fn(),
+    navigate: jest.fn(),
+    userHasAccess: jest.fn(() => true),
+  };
+});
+
+describe('ConfigurableAppMenuButton', () => {
+  it('should have a configurable button', () => {
+    mockUseConfig.mockReturnValue({
+      menuButtonsConfig: [
+        {
+          name: 'Button name',
+          nameCode: 'buttonName',
+          url: 'http://someurl.icrc',
+          requiredPrivilege: 'Privilege',
+        },
+      ],
+    });
+
+    render(<ConfigurableAppMenuButton />);
+
+    const button = screen.getByRole('menuitem', { name: /Button name/ });
+    expect(button).toBeInTheDocument();
+  });
+});

@@ -1,0 +1,80 @@
+@use '@carbon/styles/scss/type';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+.lastVisitsWidgetContainer {
+    border: 1px solid $ui-03;
+    width: 100%;
+    margin: 10px auto;
+    max-width: 95vw;
+    background-color: $ui-background;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+.lastVisitsWidgetContainer input[type="text"] {
+  background-color: $ui-background;
+}
+
+.container {
+  margin: 15px;
+}
+
+.formsContainer {
+  margin: 15px;
+  display: flex;
+}
+
+.formsHeader {
+  margin: 15px;
+  flex: 1;
+}
+
+.formsBody {
+  margin: 15px;
+  float: left;
+  flex: 1;
+}
+
+.form {
+  margin-bottom: 15px;
+}
+
+.attachmentsContainer {
+  margin: 15px;
+  display: flex;
+}
+
+.attachmentsHeader {
+  margin: 15px;
+  flex: 1;
+}
+
+.attachmentsBody {
+  margin: 15px;
+  float: left;
+  flex: 1;
+}
+
+.attachment {
+  margin-bottom: 5px;
+  display: flex;
+}
+
+.attachmentLink {
+  margin-left: 5px;
+  float: left;
+  flex: 1;
+}
+
+.tile {
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+.content {
+  color: $text-02;
+  margin-top: 3rem;;
+  margin-bottom: 3rem;;
+}

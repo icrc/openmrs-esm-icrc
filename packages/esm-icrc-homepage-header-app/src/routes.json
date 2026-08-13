@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "extensions": [
+    {
+      "name": "homepage-dashboard-link",
+      "component": "homepageDashboardLink",
+      "slot": "homepage-dashboard-slot",
+      "meta": {
+        "name": "homepage",
+        "slot": "homepage-widgets-dashboard-slot",
+        "title": "Home"
+      },
+      "online": true,
+      "offline": false,
+      "order": 0
+    },
+    {
+      "name": "homepage-header",
+      "component": "homepageHeader",
+      "slot": "homepage-widgets-slot",
+      "meta": {
+        "fullWidth": true
+      },
+      "order": 1
+    },
+    {
+      "component": "homepageWidget",
+      "name": "homepage-home-widget",
+      "slot": "homepage-widgets-dashboard-slot"
+    }
+  ],
+  "pages": [
+    {
+      "component": "root",
+      "route": "homepage",
+      "online": true,
+      "offline": true
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+.columnLabel {
+  @include type.type-style("heading-compact-02");
+  color: $text-02;
+}
+
+.diagnosis {
+  padding: 1rem 0.75rem;
+}
+
+.diagnosisList {
+  margin-top: 0.25rem;
+  background-color: $ui-02;
+  max-height: 14rem;
+  overflow-y: auto;
+  border: 1px solid $ui-03;
+}
+
+.diagnosisList li:hover {
+  background-color: $ui-03;
+}
+
+.diagnosesText {
+  @include type.type-style("body-short-01");
+  color: $text-02;
+}
+
+.emptyResults {
+  @include type.type-style("body-short-01");
+  color: $text-02;
+  min-height: 1rem;
+}
+
+.imgUploadHelperText {
+  @include type.type-style("body-short-01");
+  color: $text-02;
+}
+
+.button {
+  height: 4rem;
+  display: flex;
+  align-content: flex-start;
+  align-items: baseline;
+  min-width: 50%;
+}
+
+.tablet {
+  padding: 1.5rem 1rem;
+  background-color: $ui-02;
+}
+
+.desktop {
+  padding: 0rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tabsList > div {
+  width: 100% !important;
+}
+
+.grid {
+  margin: 0rem;
+  padding: 0rem;
+}
+
+.row {
+  margin: 0.5rem 0rem 2.75rem;
+}
+
+.desktopTile {
+  text-align: center;
+  border: 1px solid $ui-03;
+}
+
+.tabletTile {
+  text-align: center;
+}
+
+.visitResultTab{
+  min-width: fit-content;
+  button{
+    width: fit-content!important;
+    box-shadow: inset 0 2px 0 0 var(--brand-03);
+  }
+}

@@ -1,0 +1,14 @@
+@use '@carbon/layout';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+.aboutInfoContainer {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+}

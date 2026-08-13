@@ -1,0 +1,18 @@
+{
+  "reports": "Reportes",
+  "searchForAReport": "Buscar un reporte",
+  "mergeVisit": "Combinar visita",
+  "downloadPatientInformation": "Descargar información del paciente",
+  "markPatientDeceased": "Marcar como fallecido",
+  "errorMarkPatientDeceased": "Error al marcar al paciente como fallecido",
+  "patientMarkedAsDeceased": "El paciente ahora está marcado como fallecido",
+  "success": "Éxito",
+  "printWristband": "Imprimir pulsera",
+  "printIdCard": "Imprimir tarjeta de identificación de HSU",
+  "materialRequest": "Solicitud de material",
+  "globalPropertyServerNotFound": "Propiedad global para el servidor no encontrada: ",
+  "transferAllPatientDataTo": "Transferir todos los datos del paciente a {{location}}",
+  "successTransferPatient": "Paciente transferido con éxito a {{location}}.",
+  "errorTransferPatient": "Ocurrió un error al intentar transferir al paciente a {{location}}.",
+  "fastDataEntryAppMenuLink": "Entrada rápida de datos"
+}

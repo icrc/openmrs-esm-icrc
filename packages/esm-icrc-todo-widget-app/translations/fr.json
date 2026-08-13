@@ -1,0 +1,16 @@
+{
+    "appointmentsToConfirm": "Rendez-vous à confirmer",
+    "todoCompleted": "La tâche a été accomplie avec succès",
+    "todoCompleteError": "Une erreur  inattendue s'est produite lors de l'execution de la tâche",
+    "todoAccepted": "La tâche est acceptée avec succès",
+    "todoAcceptedError": "In erreur inattendue s'est produite en acceptant une tâche à accomplir",
+    "dateTime": "La date et l'heure",
+    "HSU Details": "Détails de l'USS",
+    "todo": "Tâche à executer",
+    "actions": "Tâches",
+    "print": "Imprimer",
+    "accept": "Accepter",
+    "done": "Accomplie",
+    "myTodos": "Rendez vous",
+    "noTodosToDisplay": "Acune tâche à afficher"
+}

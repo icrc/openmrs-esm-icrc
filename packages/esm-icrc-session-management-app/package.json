@@ -1,0 +1,47 @@
+{
+  "name": "@icrc/esm-icrc-session-management-app",
+  "version": "1.0.0",
+  "description": "Session management microfrontend for the OpenMRS SPA",
+  "browser": "dist/esm-icrc-session-management-app.js",
+  "main": "src/index.ts",
+  "source": true,
+  "license": "MPL-2.0",
+  "scripts": {
+    "start": "openmrs develop",
+    "serve": "webpack serve --mode=development",
+    "debug": "npm run serve",
+    "build": "webpack --mode production",
+    "analyze": "webpack --mode=production --env.analyze=true",
+    "lint": "eslint src --ext ts,tsx",
+    "typescript": "tsc",
+    "extract-translations": "i18next 'src/**/*.component.tsx'"
+  },
+  "browserslist": [
+    "extends browserslist-config-openmrs"
+  ],
+  "keywords": [
+    "openmrs"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@carbon/react": "^1.83.0",
+    "@openmrs/esm-framework": "next",
+    "@openmrs/esm-patient-common-lib": "next",
+    "i18next": "^23.10.1",
+    "lodash-es": "^4.17.21"
+  },
+  "peerDependencies": {
+    "@openmrs/esm-framework": "8.x",
+    "@openmrs/esm-patient-chart-app": "11.x",
+    "@openmrs/esm-patient-common-lib": "11.x",
+    "react": "18.x",
+    "react-i18next": "11.x",
+    "react-router-dom": "6.x"
+  },
+  "devDependencies": {
+    "react-hook-form": "^7.34.2",
+    "webpack": "^5.99.9"
+  }
+}
