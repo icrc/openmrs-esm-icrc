@@ -22,6 +22,9 @@
   "keywords": [
     "openmrs"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@carbon/react": "^1.83.0",
     "@openmrs/esm-patient-common-lib": "next",

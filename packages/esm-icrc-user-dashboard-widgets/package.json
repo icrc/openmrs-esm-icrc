@@ -16,6 +16,9 @@
     "dashboard",
     "widgets"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@swc/core": "^1.15.3",
     "swc-loader": "^0.2.6",

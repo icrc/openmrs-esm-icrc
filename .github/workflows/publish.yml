@@ -75,12 +75,12 @@ jobs:
       - name: Publish pre-release
         if: github.event_name == 'push'
         timeout-minutes: 15
-        run: yarn workspaces foreach -A --no-private --topological exec npm publish --provenance --tag pre
+        run: yarn workspaces foreach -A --no-private --topological exec npm publish --provenance --access public --tag pre
 
       - name: Publish release
         if: github.event_name == 'workflow_dispatch'
         timeout-minutes: 15
-        run: yarn workspaces foreach -A --no-private --topological exec npm publish --provenance
+        run: yarn workspaces foreach -A --no-private --topological exec npm publish --provenance --access public
 
       - name: Git Config
         if: github.event_name == 'workflow_dispatch'
