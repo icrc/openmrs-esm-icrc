@@ -12,6 +12,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -29,11 +30,20 @@ jobs:
         run: echo "dir=$(yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
 
       - name: Cache Yarn
-        uses: actions/cache@v6
+        uses: actions/cache@v7
         with:
           path: ${{ steps.yarn-cache.outputs.dir }}
           key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
           restore-keys: yarn-${{ runner.os }}-
+
+      - name: Cache Turbo
+        uses: actions/cache@v7
+        with:
+          path: |
+            .turbo/cache
+            node_modules/.cache/turbo
+          key: turbo-${{ runner.os }}-${{ github.sha }}
+          restore-keys: turbo-${{ runner.os }}-
 
       - name: Install dependencies
         run: yarn install --immutable
@@ -42,4 +52,4 @@ jobs:
         run: yarn verify
 
       - name: Build
-        run: yarn turbo run build
+        run: yarn turbo run build --concurrency=2
