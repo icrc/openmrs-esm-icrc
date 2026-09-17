@@ -1,0 +1,134 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/colors';
+@use '@carbon/styles/scss/type';
+@use '~@openmrs/esm-styleguide/src/vars' as *;
+@use '../../../style.scss' as *;;
+
+.link {
+  text-decoration: none;
+}
+
+.tableCell,
+.interactiveText01 {
+  color: $interactive-01;
+}
+
+.desktopRow,
+.desktopHeader {
+  height: spacing.$spacing-07 !important;
+}
+
+.tabletRow,
+.tabletHeader {
+  height: spacing.$spacing-09 !important;
+}
+
+.flexRow {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.tableContainer {
+  padding: 0;
+
+  :global(.cds--data-table-header) {
+    padding: 0;
+  }
+
+  :global(.cds--table-toolbar) {
+    position: relative;
+    overflow: visible;
+    top: 0;
+  }
+
+  &:global(.cds--data-table-container) {
+    background: none !important;
+  }
+}
+
+.filterContainer {
+  :global(.cds--dropdown__wrapper--inline) {
+    gap: 0;
+  }
+
+  :global(.cds--list-box__menu-icon) {
+    height: 1rem;
+  }
+}
+
+.search {
+  max-width: 16rem;
+}
+
+.menuItem {
+  max-width: none;
+}
+
+.expandedRow {
+  > td {
+    padding: inherit !important;
+
+    > div {
+      max-height: max-content !important;
+    }
+  }
+  > div {
+    background-color: $ui-02;
+  }
+}
+
+.hiddenRow {
+  display: none;
+}
+
+.content {
+  @include type.type-style('heading-compact-02');
+  color: $text-02;
+  margin-bottom: 0.5rem;
+}
+
+.tileContainer {
+  background-color: $ui-02;
+  border-top: 1px solid $ui-03;
+  padding: 2rem 0;
+}
+
+.tile {
+  padding: 1.5rem 0;
+  margin: 0 spacing.$spacing-05;
+  text-align: center;
+}
+.tileContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.illo {
+  margin-top: spacing.$spacing-05;
+}
+
+.content {
+  @include type.type-style('heading-compact-01');
+  color: colors.$gray-70;
+  margin-top: spacing.$spacing-05;
+  margin-bottom: spacing.$spacing-03;
+}
+
+.emptyStateContainer {
+  background-color: colors.$white-0;
+}
+
+.helper {
+  @include type.type-style('body-compact-01');
+  color: $text-02;
+}
+
+.layer {
+  height: 100%;
+
+  :global(.cds--btn--primary) {
+    background-color: unset;
+  }
+}

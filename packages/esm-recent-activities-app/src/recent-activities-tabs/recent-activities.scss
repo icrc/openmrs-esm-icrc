@@ -1,0 +1,53 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+@use '../style.scss' as *;;
+
+.link {
+  text-decoration: none;
+}
+
+.recentActivitiesPage {
+  display: flex;
+  border: 1px solid $ui-03;
+}
+
+.breadcrumbsSlot {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+.recentActivities {
+  height: 100%;
+  width: 100%;
+  background-color: $ui-02;
+}
+
+.tabs {
+  grid-column: 'span 2';
+  padding: 0 spacing.$spacing-05;
+}
+
+.hiddenTabsContent,
+.tabs .hiddenTabsContent {
+  display: none;
+}
+
+.tableBody {
+  background-color: $ui-01;
+}
+
+.tableCell,
+.interactiveText01 {
+  color: $interactive-01;
+}
+
+.desktopRow,
+.desktopHeader {
+  height: spacing.$spacing-07 !important;
+}
+
+.tabletRow,
+.tabletHeader {
+  height: spacing.$spacing-09 !important;
+}

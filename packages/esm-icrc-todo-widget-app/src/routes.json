@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "extensions": [
+    {
+      "name": "homepage-todo-widget",
+      "component": "homepageTodo",
+      "slot": "homepage-widgets-slot",
+      "meta": {
+        "fullWidth": true
+      },
+      "order": 4
+    }
+  ],
+  "pages": []
+}

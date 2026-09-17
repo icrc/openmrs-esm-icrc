@@ -1,0 +1,26 @@
+{
+  "name": "@icrc/esm-icrc-user-dashboard-widgets",
+  "version": "1.0.0",
+  "description": "A repo for creating ICRC microfrontend dashboard widgets",
+  "main": "dist/diop-esm-icrc-user-dashboard-widgets.js",
+  "browser": "dist/diop-esm-icrc-user-dashboard-widgets.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "analyze": "webpack --mode=production --env analyze=true",
+    "lint": "eslint src --ext tsx",
+    "build": "webpack --mode production",
+    "typescript": "tsc -p tsconfig.json"
+  },
+  "keywords": [
+    "openmrs",
+    "dashboard",
+    "widgets"
+  ],
+  "devDependencies": {
+    "@swc/core": "^1.15.3",
+    "swc-loader": "^0.2.6",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
+  }
+}

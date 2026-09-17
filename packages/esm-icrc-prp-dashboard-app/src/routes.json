@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+    "backendDependencies": {
+    "webservices.rest": "^2.24.0"
+  },
+
+  "extensions": [
+    {
+      "name": "prp-dashboard-details-widget",
+      "component": "prpDashboardDetailsWidget",
+      "slot": "prp-dashboard-slot",
+      "meta": {
+        "fullWidth": true
+      }
+    },
+    {
+      "name": "prp-dashboard-summary-dashboard",
+      "component": "prpDashboardSummaryDashboard",
+      "slot": "prp-nav-group-slot",
+      "meta": {
+        "fullWidth": true,
+        "path": "PRP Dashboard",
+        "slot": "prp-dashboard-slot",
+        "title": {
+          "key": "PRP Dashboard",
+          "default": "PRP Dashboard"
+        }
+      }
+    }
+  ],
+  "pages": []
+}

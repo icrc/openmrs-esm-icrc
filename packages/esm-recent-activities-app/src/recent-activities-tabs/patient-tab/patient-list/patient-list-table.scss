@@ -1,0 +1,57 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@use '~@openmrs/esm-styleguide/src/vars' as *;
+@use '../../../style.scss';
+
+.tableCell,
+.interactiveText01 {
+  color: $interactive-01;
+}
+
+.desktopRow,
+.desktopHeader {
+  height: spacing.$spacing-07 !important;
+}
+
+.tabletRow,
+.tabletHeader {
+  height: spacing.$spacing-09 !important;
+}
+
+.flexRow {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.patientInfo {
+  display: flex;
+  padding: 0;
+  width: 100%;
+  align-items: center;
+  cursor: pointer;
+}
+.patientBanner {
+  display: flex;
+}
+
+.patientName {
+  @include type.type-style('heading-03');
+  margin: 0.5rem;
+  color: $ui-05;
+}
+
+.gender {
+  text-transform: capitalize;
+}
+
+.tags {
+  margin-top: spacing.$spacing-05;
+  display: flex;
+  column-gap: spacing.$spacing-03;
+
+  & > div {
+    margin: 0;
+  }
+}
+

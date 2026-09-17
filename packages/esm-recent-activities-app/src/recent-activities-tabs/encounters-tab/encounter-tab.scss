@@ -1,0 +1,8 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@use '../../style.scss' as *;;
+
+.encounterTab {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}

@@ -1,0 +1,23 @@
+@use '~@openmrs/esm-styleguide/src/vars' as *;
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow: visible;
+    align-items: flex-start;
+    margin: 1rem;
+    margin-top: 0;
+}
+
+.totalSessionsWidget {
+    border: 1px solid $ui-03;
+    background-color: white;
+    flex: 1;
+}
+
+.totalSessionsCard {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+}

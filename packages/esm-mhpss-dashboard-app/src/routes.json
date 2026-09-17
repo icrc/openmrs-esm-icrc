@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+    "backendDependencies": {
+    "webservices.rest": "^2.24.0"
+  },
+
+  "extensions": [
+    {
+      "name": "mhpss-dashboard-details-widget",
+      "component": "mhpssDashboardDetailsWidget",
+      "slot": "mhpss-dashboard-slot",
+      "meta": {
+        "fullWidth": true
+      }
+    },
+    {
+      "name": "mhpss-dashboard-summary-dashboard",
+      "component": "mhpssDashboardSummaryDashboard",
+      "slot": "mhpss-nav-group-slot",
+      "meta": {
+        "fullWidth": true,
+        "path": "MHPSS Dashboard",
+        "slot": "mhpss-dashboard-slot",
+        "title": {
+          "key": "MHPSS Dashboard",
+          "default": "MHPSS Dashboard"
+        }
+      }
+    }
+  ],
+  "pages": []
+}

@@ -1,0 +1,12 @@
+{
+  "hsuJourney": "رحلة المريض",
+  "noActiveVisit": "لا توجد زيارة نشطة",
+  "add": "إضافة",
+  "cancel": "إلغاء",
+  "endDate": "تاريخ الانتهاء",
+  "noResultsFor": "لا توجد نتائج لـ",
+  "status": "الحالة",
+  "currentVisitSuggestedActions": "الإجراءات المقترحة للزيارة الحالية",
+  "actionsMarked": "الإجراءات المميزة بـ",
+  "areMandatory": "إلزامية"
+}

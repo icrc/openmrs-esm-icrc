@@ -1,0 +1,19 @@
+{
+    "dashboards": "Tableaux de board",
+    "reports": "Rapports",
+    "searchForAReport": "Recherche de rapport",
+    "mergeVisit": "Fusionner les visites",
+    "downloadPatientInformation": "Télécharger les informations du patient/SSU",
+    "markPatientDeceased": "Enregistrer le décès du patient",
+    "errorMarkPatientDeceased": "Erreur lors de l'enregistrement du décès du patient",
+    "patientMarkedAsDeceased": "Le décès du patient est maintenant enregistré",
+    "success": "Succès",
+    "printWristband": "Imprimer le bracelet identification",
+    "printIdCard": "Imprimer le ID du SSU",
+    "materialRequest": "Demande de Matériel",
+    "globalPropertyServerNotFound": "Propriété globale du serveur introuvable: ",
+    "transferAllPatientDataTo": "Transférer toutes les données du patient vers {{location}}",
+    "successTransferPatient": "Patient transféré avec succès vers {{location}}.",
+    "errorTransferPatient": "Une erreur est survenue lors du transfert du patient vers {{location}}.",
+    "fastDataEntryAppMenuLink": "Saisie rapide de données"
+}

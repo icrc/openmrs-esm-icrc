@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "extensions": [
+    {
+      "name": "homepage-stock-maintenance-widget",
+      "component": "stockAndMaintainance",
+      "slot": "homepage-widgets-slot",
+      "meta": {
+        "fullWidth": true
+      },
+      "order": 1
+    }
+  ],
+  "pages": []
+}

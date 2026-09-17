@@ -1,0 +1,73 @@
+import React from 'react';
+import { screen, render } from '@testing-library/react';
+import { of } from 'rxjs/internal/observable/of';
+import { getConfig, useConfig, usePatient, useSession } from '@openmrs/esm-framework';
+import LastVisitWidget from './last-visits-widget.component';
+import { fetchAttachmentByVisit, useLastVisits } from './last-visits-widget.resource';
+import {
+  lastVisitsMock,
+  mockConfig,
+  mockFetchAttachmentsByVisit,
+  mockHtmlFormEntryFormsConfig,
+} from '../../../../__mocks__/last-visits.mock';
+import { mockPatient } from '../../../../__mocks__/patient.mock';
+import { mockSessionDataResponse } from '../../../../__mocks__/session.mock';
+import userEvent from '@testing-library/user-event';
+
+const mockUseLastVisits = useLastVisits as jest.Mock;
+const mockFetchAttachmentByVisit = fetchAttachmentByVisit as jest.Mock;
+const mockGetConfig = getConfig as jest.Mock;
+const mockUseConfig = useConfig as jest.Mock;
+const mockUsePatient = usePatient as jest.Mock;
+const mockUseSession = useSession as jest.Mock;
+
+jest.mock('lodash-es/debounce', () => jest.fn((fn) => fn));
+
+jest.mock('@openmrs/esm-framework', () => {
+  const originalModule = jest.requireActual('@openmrs/esm-framework');
+
+  return {
+    ...originalModule,
+    useConfig: jest.fn().mockImplementation(() => mockConfig),
+    usePatient: jest.fn().mockImplementation(() => mockPatient),
+    useSession: jest.fn().mockImplementation(() => mockSessionDataResponse),
+  };
+});
+
+jest.mock('./last-visits-widget.resource', () => ({
+  useLastVisits: jest.fn(),
+  fetchAttachmentByVisit: jest.fn(),
+}));
+
+test('renders the last visits notes widget with all the relevant fields and values', async () => {
+  mockFetchAttachmentByVisit.mockResolvedValue(mockFetchAttachmentsByVisit);
+  mockUseLastVisits.mockReturnValue(lastVisitsMock);
+
+  renderLastVisitsWidget();
+
+  expect(screen.getByRole('columnheader', { name: /From/i })).toBeInTheDocument();
+  expect(screen.getByRole('columnheader', { name: /To/i })).toBeInTheDocument();
+  expect(screen.getByRole('cell', { name: /14-Jan-2022/i })).toBeInTheDocument();
+  expect(screen.getByRole('cell', { name: /15-Jan-2022/i })).toBeInTheDocument();
+
+  await userEvent.click(screen.getAllByRole('button')[0]);
+  expect(screen.getByRole('heading', { name: /Completed forms/i })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: /Attachments/i })).toBeInTheDocument();
+  expect(screen.getByText(/Visit 1 - Form 1/i)).toBeInTheDocument();
+  expect(screen.getByText(/Visit 1 - Form 2/i)).toBeInTheDocument();
+});
+
+test('renders the last visits notes widget with no values', async () => {
+  mockUseLastVisits.mockReturnValue(of({}));
+
+  renderLastVisitsWidget();
+
+  expect(screen.getByText(/There are no {{displayText}} to display for this patient/i)).toBeInTheDocument();
+});
+
+function renderLastVisitsWidget() {
+  mockGetConfig.mockResolvedValue(mockHtmlFormEntryFormsConfig);
+  mockUseConfig.mockReturnValue(mockConfig);
+  mockUsePatient.mockReturnValue(mockPatient);
+  render(<LastVisitWidget />);
+}

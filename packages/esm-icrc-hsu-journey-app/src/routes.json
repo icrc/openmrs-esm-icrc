@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+    "backendDependencies": {
+    "webservices.rest": "^2.24.0"
+  },
+
+  "extensions": [
+    {
+      "name": "esm-icrc-hsu-journey-app-overview-widget",
+      "component": "hsuJourneyWidget",
+      "slot": "prp-dashboard-slot",
+      "meta": {
+        "fullWidth": true
+      }
+    }
+  ],
+  "pages": [
+    {
+      "component": "hsuJourney",
+      "route": "hsu-journey",
+      "online": true,
+      "offline": true
+    }
+  ]
+}

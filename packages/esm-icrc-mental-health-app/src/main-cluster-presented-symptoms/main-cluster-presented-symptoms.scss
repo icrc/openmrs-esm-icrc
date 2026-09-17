@@ -1,0 +1,41 @@
+@use '~@openmrs/esm-styleguide/src/vars' as *;
+
+.mainClusterPresentedSymptomsContainer {
+  margin: 10px;
+  background-color: $ui-background;
+  border: 1px solid $ui-03;
+  padding: 0;
+}
+
+.mainClusterPresentedSymptomsDateCell {
+  width: 20%;
+}
+.mainClusterPresentedSymptomsSymptomCell {
+  width: 80%;
+}
+
+.mainClusterPresentedSymptomsSymptomSection {
+  text-transform: capitalize;
+  color: #004144;
+  margin: 10px;
+
+}
+.mainClusterPresentedSymptomsSymptomHeader th > div {
+  color: $text-02;
+}
+.mainClusterPresentedSymptomsSeparator {
+  background-color: $openmrs-background-grey;
+  min-height: 1.5rem;
+}
+
+.mainClusterPresentedSymptomsSymptomTable {
+  max-height: calc(100vh - 8rem);
+  overflow: auto;
+  border: 1px solid $ui-03;
+  width: 100%;
+  background-color: $ui-background;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: none;
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+    "backendDependencies": {
+    "webservices.rest": "^2.24.0"
+  },
+
+  "extensions": [
+    {
+      "name": "hcd-dashboard-details-widget",
+      "component": "hcdDashboardDetailsWidget",
+      "slot": "hcd-dashboard-slot",
+      "meta": {
+        "fullWidth": true
+      }
+    },
+    {
+      "name": "hcd-dashboard-summary-dashboard",
+      "component": "hcdDashboardSummaryDashboard",
+      "slot": "hcd-nav-group-slot",
+      "meta": {
+        "fullWidth": true,
+        "path": "HCD Dashboard",
+        "slot": "hcd-dashboard-slot",
+        "title": {
+          "key": "HCD Dashboard",
+          "default": "HCD Dashboard"
+        }
+      }
+    }
+  ],
+  "pages": []
+}

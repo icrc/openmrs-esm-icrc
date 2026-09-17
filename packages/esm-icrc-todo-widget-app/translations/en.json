@@ -1,0 +1,16 @@
+{
+  "appointmentsToConfirm": "Appointment pending confirmation",
+  "todoCompleted": "The task has been completed successfully",
+  "todoCompleteError": "An unexpected error occurred while executing the task",
+  "todoAccepted": "The task has been accepted successfully",
+  "todoAcceptedError": "An unexpected error occurred while accepting the task for completion",
+  "dateTime": "Date and time",
+  "hsuDetails": "HSU Details",
+  "todo": "To Do",
+  "actions": "Actions",
+  "print": "Print",
+  "accept": "Accept",
+  "done": "Done",
+  "myTodos": "My To-Dos",
+  "noTodosToDisplay": "No Todo actions to display"
+}

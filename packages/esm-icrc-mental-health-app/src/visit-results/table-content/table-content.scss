@@ -1,0 +1,57 @@
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/type';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+.formCompleteLabel{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    span{
+      margin-right: 7px;
+      font-size: 0.675rem;
+      letter-spacing: 0.16px;
+    }
+
+    svg{
+      height: 12px;
+    }
+}
+
+svg.checkmarkOutlineIcon{
+    fill: green;
+}
+
+svg.warningAltIcon{
+    fill: yellow;
+}
+
+.tablet__tabContent{
+    height: calc(100vh - 13rem);
+    overflow: auto;
+}
+
+.desktop__tabContent{
+    max-height: calc(100vh - 11rem);
+    overflow: auto;
+}
+
+.heading {
+    @include type.type-style("heading-03");
+    color: $text-02;
+    margin: 1rem;
+}
+
+.formCell{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    svg{
+      height: 15px;
+    }
+}
+
+.contentCenter{
+    text-align: center;
+}

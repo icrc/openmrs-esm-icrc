@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "extensions": [
+    {
+      "name": "app-menu-configurable-button",
+      "component": "menuConfigurableButton"
+    },
+    {
+      "name": "app-menu-about-button",
+      "component": "menuAboutButton",
+      "slot": "user-panel-slot"
+    }
+  ],
+  "pages": []
+}

@@ -1,0 +1,71 @@
+import React from 'react';
+import { screen, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { useConfig } from '@openmrs/esm-framework';
+import ReportWidget from './reports-widget.component';
+
+const mockUseConfig = useConfig as jest.Mock;
+
+mockUseConfig.mockReturnValue({
+  reports: [
+    {
+      id: 'icrc.reportingui.reports',
+      label: 'Patient List Report',
+      url: 'reportingui/runReport.page?reportDefinition=f011c96f-c61d-42a7-bd88-6aa1523c7f98',
+      requiredPrivilege: '',
+    },
+    {
+      id: 'icrc.reportingui.reports.DaysOfAdmissionForTheMonthlyPeriodAggregatedValue',
+      label: 'Aggregated monthly days of admission by services',
+      url: 'reportingui/runReport.page?reportDefinition=d80d73b4-bc4c-4383-8d86-db2652216d64',
+      requiredPrivilege: '',
+    },
+    {
+      id: 'icrc.reportingui.reports.DaysOfAdmissionForTheMonthlyPeriod',
+      label: 'HSU monthly days of admission',
+      url: 'reportingui/runReport.page?reportDefinition=8e542776-2b1b-4b13-88c2-5fa09e065a24',
+      requiredPrivilege: '',
+    },
+    {
+      id: 'icrc.reportingui.reports.ServicesDeliveryReport',
+      label: 'Services delivery report',
+      url: 'reportingui/runReport.page?reportDefinition=9d4b9dc4-fcc6-448d-abdb-1e05a6d0e18e',
+      requiredPrivilege: 'PRP: View Reports',
+    },
+  ],
+});
+
+describe('ReportsList', () => {
+  it('renders a reports list', () => {
+    const expectedReportRows = [
+      /Patient List Report/,
+      /Services delivery report/,
+      /Aggregated monthly days of admission by services/,
+      /HSU monthly days of admission/,
+    ];
+
+    render(<ReportWidget />);
+
+    expectedReportRows.forEach((row) => {
+      expect(screen.getByText(row)).toBeInTheDocument();
+    });
+  });
+
+  it('able to search a report', async () => {
+    const userEventInst = userEvent.setup();
+    render(<ReportWidget />);
+
+    const searchbox = screen.getByRole('searchbox');
+    expect(searchbox).toBeInTheDocument();
+
+    // filter reports by typing in the searchbox
+    await userEventInst.type(searchbox, 'admission');
+
+    // filter table to show only `admission` reports
+    expect(screen.getByText(/HSU monthly days of admission/)).toBeInTheDocument();
+    expect(screen.getByText(/Aggregated monthly days of admission by services/)).toBeInTheDocument();
+    expect(screen.queryByText(/Patient List Report/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Services delivery report/)).not.toBeInTheDocument();
+    userEvent.clear(searchbox);
+  });
+});

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "extensions": [
+    {
+      "name": "recent-activities-link",
+      "component": "recentActivitiesLink",
+      "slot": "app-menu-slot"
+    },
+    {
+      "name": "recent-activities-widget",
+      "component": "recentActivitiesWidget",
+      "slot": "homepage-widgets-slot"
+    }
+  ],
+  "pages": [
+    {
+      "component": "root",
+      "route": "recent-activities",
+      "online": true,
+      "offline": true
+    }
+  ]
+}

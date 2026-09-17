@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "backendDependencies": {
+    "webservices.rest": "^2.24.0",
+    "fhir2": ">=1.2"
+  },
+  "extensions": [
+    {
+      "name": "visit-results-widget",
+      "component": "visitResultsFormWidget",
+      "slot": "mhpss-dashboard-slot",
+      "meta": {
+        "fullWidth": true
+      }
+    },
+    {
+      "name": "main-cluster-presented-symptoms-widget",
+      "component": "mainClusterPresentedSymptomsWidget",
+      "slot": "mhpss-dashboard-slot",
+      "meta": {
+        "fullWidth": true
+      }
+    },
+    {
+      "name": "total-sessions-widget",
+      "component": "totalSessionsWidget",
+      "slot": "mhpss-dashboard-slot",
+      "meta": {
+        "fullWidth": true
+      }
+    }
+  ],
+  "pages": []
+}

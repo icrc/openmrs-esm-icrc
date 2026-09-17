@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "extensions": [
+    {
+      "name": "generic-widget-interpretation-table",
+      "component": "genericWidgetInterpretationTable",
+      "meta": {
+        "fullWidth": true
+      }
+    }
+  ],
+  "pages": []
+}

@@ -1,0 +1,28 @@
+@use '~@openmrs/esm-styleguide/src/vars' as *;
+
+.tileContainer {
+  border: 0.0625rem solid $ui-03;
+  height: 7.875rem;
+  min-width: 210px;
+  min-height: 50px;
+  width: 100%;
+}
+
+.tileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+}
+
+.headerLabel {
+  color: $text-02;
+}
+
+.totalsLabel {
+  color: $text-02;
+}
+
+.totalsValue {
+  color: $ui-05;
+}

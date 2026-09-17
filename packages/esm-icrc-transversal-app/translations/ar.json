@@ -1,0 +1,18 @@
+{
+  "reports": "التقارير",
+  "searchForAReport": "البحث عن تقرير",
+  "mergeVisit": "دمج الزيارة",
+  "downloadPatientInformation": "تنزيل معلومات المريض",
+  "markPatientDeceased": "تحديد المستفيد كمتوفي",
+  "errorMarkPatientDeceased": "خطأ عند تحديد المريض كمتوفى",
+  "patientMarkedAsDeceased": "تم تحديد المريض الآن كمتوفى",
+  "success": "نجاح",
+  "printWristband": "طباعة سوار المعصم",
+  "printIdCard": "طباعة بطاقة هوية وحدة الخدمات الصحية",
+  "materialRequest": "طلب مواد",
+  "globalPropertyServerNotFound": "لم يتم العثور على الخاصية العامة للخادم: ",
+  "transferAllPatientDataTo": "نقل كافة بيانات المريض إلى {{location}}",
+  "successTransferPatient": "تم نقل المريض بنجاح إلى {{location}}.",
+  "errorTransferPatient": "حدث خطأ أثناء محاولة نقل المريض إلى {{location}}.",
+  "fastDataEntryAppMenuLink": "إدخال البيانات السريع"
+}

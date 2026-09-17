@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "extensions": [
+    {
+      "name": "session-management-link",
+      "component": "sessionManagementLink",
+      "slot": "app-menu-slot"
+    },
+    {
+      "name": "session-management-widget",
+      "component": "sessionManagementWidget",
+      "slot": "homepage-widgets-slot"
+    },
+    {
+      "component": "sessionManagementWidget",
+      "name": "session-management-home-widget",
+      "slot": "session-management-dashboard-slot"
+    },
+    {
+      "name": "delete-session-modal",
+      "component": "deleteSessionModal",
+      "online": true,
+      "offline": true
+    },
+    {
+      "name": "session-management-dashboard-link",
+      "component": "sessionManagementDashboardLink",
+      "slot": "homepage-dashboard-slot",
+      "meta": {
+        "name": "session-management",
+        "slot": "session-management-dashboard-slot",
+        "title": "Group / Family session management"
+      },
+      "online": true,
+      "offline": false
+    }
+  ],
+  "pages": [
+    {
+      "component": "root",
+      "route": "session-management",
+      "online": true,
+      "offline": true
+    }
+  ]
+}

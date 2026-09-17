@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "extensions": [
+    {
+      "name": "mark-patient-deceased",
+      "component": "markPatientDeceased",
+      "slot": "patient-actions-slot"
+    },
+    {
+      "name": "download-visit-button",
+      "component": "downloadVisitButton",
+      "slot": "patient-actions-slot"
+    },
+    {
+      "name": "print-patient-wristband",
+      "component": "printPatientWristband",
+      "slot": "patient-actions-slot"
+    },
+    {
+      "name": "print-patient-id-card",
+      "component": "printPatientIdCard",
+      "slot": "patient-actions-slot"
+    },
+    {
+      "name": "material-request",
+      "component": "materialMequest",
+      "slot": "patient-actions-slot"
+    },
+    {
+      "name": "merge-visit-button",
+      "component": "mergeVisitButton",
+      "slot": "patient-actions-slot"
+    },
+    {
+      "name": "transfer-patient-button",
+      "component": "transferPatient",
+      "slot": "patient-actions-slot"
+    },
+    {
+      "name": "reports-widget",
+      "component": "reportsWidget",
+      "slot": "homepage-widgets-slot"
+    },
+    {
+      "name": "location-tag",
+      "component": "locationTag",
+      "slot": "patient-banner-tags-slot"
+    },
+    {
+      "name": "transfer-patient-modal",
+      "component": "transferPatientModal",
+      "online": true,
+      "offline": true
+    },
+    {
+      "name": "fast-data-entry-sidebar-link",
+      "component": "fastDataEntrySidebarLink",
+      "slot": "homepage-dashboard-slot",
+      "online": true,
+      "offline": false
+    }
+  ],
+  "pages": [
+    {
+      "component": "reportsPage",
+      "route": "reports",
+      "online": true,
+      "offline": true
+    }
+  ]
+}

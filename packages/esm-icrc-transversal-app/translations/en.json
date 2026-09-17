@@ -1,0 +1,18 @@
+{
+  "reports": "Reports",
+  "searchForAReport": "Search for a report",
+  "mergeVisit": "Merge Visit",
+  "downloadPatientInformation": "Download Patient Information",
+  "markPatientDeceased": "Mark HSU deceased",
+  "errorMarkPatientDeceased": "Error when marking the patient as deceased",
+  "patientMarkedAsDeceased": "The patient is now marked as deceased",
+  "success": "Success",
+  "printWristband": "Print Wristband",
+  "printIdCard": "Print HSU ID Card",
+  "materialRequest": "Material Request",
+  "globalPropertyServerNotFound": "Global Property for server not found: ",
+  "transferAllPatientDataTo": "Transfer all patient data to {{location}}",
+  "successTransferPatient": "Patient successfully transferred to {{location}}.",
+  "errorTransferPatient": "An error occurred while trying to transfer the patient to{{location}}.",
+  "fastDataEntryAppMenuLink": "Fast data entry"
+}

@@ -1,0 +1,37 @@
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+.reportsWidgetContainer {
+    border: 1px solid $ui-03;
+    width: 100%;
+    margin: 10px auto;
+    max-width: 95vw;
+    background-color: $ui-background;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+.reportsParent {
+    margin: 15px;
+}
+
+.reportsElement {
+    float: left;
+    width: 45%;
+    margin: 5px;
+}
+
+.reportsWidgetContainer input[type="text"] {
+    background-color: $ui-background;
+}
+
+.error {
+  background: #fff1f1;
+  border: 1px solid #da1e28;
+  border-left: 3px solid #da1e28;
+}
+
+.error label{
+  margin: 1.2rem;
+}
