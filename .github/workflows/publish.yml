@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  id-token: write  # Required for npm trusted publishers (OIDC)
+  id-token: write # Required for npm trusted publishers (OIDC)
   contents: write
   pull-requests: write
 
@@ -16,16 +16,27 @@ jobs:
     environment: npm
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: "24"
-          cache: 'yarn'
-          cache-dependency-path: '**/yarn.lock'
           registry-url: "https://registry.npmjs.org"
-          package-manager-cache: false
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Locate Yarn cache
+        id: yarn-cache
+        run: echo "dir=$(yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Yarn
+        uses: actions/cache@v7
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          restore-keys: yarn-${{ runner.os }}-
 
       - name: Install dependencies
         run: yarn install --immutable
@@ -37,8 +48,8 @@ jobs:
       - name: Run lint, type checks and tests
         run: yarn verify
 
-      - name: Yarn build
-        run: yarn build
+      - name: Build
+        run: yarn turbo run build
 
       - name: Publish pre-release
         if: github.event_name == 'push'
