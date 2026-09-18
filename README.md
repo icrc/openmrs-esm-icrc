@@ -145,4 +145,10 @@ Read the header of that script first: it needs npm 11.15.0 or later, a real term
 
 If step 2 is skipped, the publish fails with a 404, which is the same response npm gives for a package that does not exist. The message does not distinguish the two cases, so check `--verify-only` before assuming which one you have hit.
 
-A `bootstrap-npm.yml` workflow did step 1 for the original sixteen packages in one run. It was deleted once they existed, and can be recovered from commit `4937f7f` if a batch of new packages ever makes it worth repeating.
+For a batch of new packages, or for another repository facing the same problem, [`tools/bootstrap-npm.yml.template`](./tools/bootstrap-npm.yml.template) is the workflow that did step 1 for the original sixteen in a single run.
+
+Copy it to `.github/workflows/`, run it once, then delete it and revoke its token.
+
+Its header lists what to adapt. The version stamping and the publish command are specific to a fixed mode monorepo, and the token must be a classic Automation token rather than a granular one that bypasses two-factor authentication.
+
+It is kept as a template rather than a live workflow so that nothing holding an npm token sits in `.github/workflows/` once the names exist.

@@ -1,0 +1,104 @@
+# Template, not a live workflow. Copy to .github/workflows/ in the repository that
+# needs it, run it once, then delete it and revoke its token.
+#
+# Purpose: create scoped packages that do not exist on npmjs.org yet.
+#
+# Trusted publishing (OIDC) cannot do this. A trusted publisher is configured on a
+# package's settings page on npmjs.com, and that page only exists once something has
+# published the package. npmjs.org has no "create package" button, so the first
+# publish of every new name has to be authenticated with a token. After that, the
+# normal workflow publishes over OIDC with no secret at all.
+#
+# Before use, adapt:
+#   environment            the GitHub environment holding NPM_TOKEN
+#   NPM_TOKEN              classic Automation token, read and write on the target
+#                          scope. It must not be a granular token with the bypass
+#                          two-factor option, which loses direct publish in January
+#                          2027, and which npm trust also refuses later
+#   Set bootstrap version  lerna.json is specific to a fixed mode monorepo. For a
+#                          single package use npm version against package.json
+#   Build                  replace the turbo build with whatever the repository uses
+#   Publish                yarn workspaces foreach is specific to a monorepo. For a
+#                          single package use npm publish directly
+#
+# Keep --access public and --tag <something other than latest>. Scoped packages
+# default to restricted access, which npm refuses to publish with provenance, and
+# npm points latest at whatever is published first regardless of the tag given, so
+# expect to repoint latest with the first real release.
+#
+# Afterwards, configure a trusted publisher for each new name. In this repository
+# that is tools/configure-npm-trust.sh.
+name: Bootstrap npm packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "bootstrap" to confirm a token-authenticated publish'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    environment: npm
+    timeout-minutes: 45
+    steps:
+      - name: Require explicit confirmation
+        if: inputs.confirm != 'bootstrap'
+        run: |
+          echo "::error::Refusing to run. Type 'bootstrap' in the confirm input to proceed."
+          exit 1
+
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Locate Yarn cache
+        id: yarn-cache
+        run: echo "dir=$(yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Yarn
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          restore-keys: yarn-${{ runner.os }}-
+
+      - name: Install dependencies
+        timeout-minutes: 10
+        run: yarn install --immutable
+
+      # Distinct prerelease identifier so a bootstrap version can never collide
+      # with, or sort above, the -pre.N versions that publish.yml produces.
+      - name: Set bootstrap version
+        run: |
+          BASE=$(node -e "const v=require('./lerna.json').version; if(!v) throw new Error('no version in lerna.json'); console.log(v)")
+          yarn lerna version "${BASE}-bootstrap.${{ github.run_number }}" --no-git-tag-version --no-push --yes
+
+      # Lint and tests are skipped: these versions exist only to create the
+      # package names, and are parked on the "bootstrap" dist-tag so that neither
+      # "latest" nor "pre" ever resolves to them.
+      - name: Build
+        timeout-minutes: 20
+        run: yarn turbo run build --concurrency=2
+
+      # No --provenance. It would work here, but a provenance failure cancels the
+      # whole publish, and this run only needs to create the names. The normal
+      # workflow attests the versions that matter.
+      - name: Publish bootstrap versions
+        timeout-minutes: 15
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn workspaces foreach -A --no-private --topological exec npm publish --access public --tag bootstrap
