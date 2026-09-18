@@ -1,13 +1,33 @@
-# One-off workflow to create the @icrc/* packages on npmjs.org.
+# Template, not a live workflow. Copy to .github/workflows/ in the repository that
+# needs it, run it once, then delete it and revoke its token.
 #
-# Trusted publishing (OIDC) cannot create a package that does not exist yet: a
-# trusted publisher is configured on a package's settings page on npmjs.com, and
-# that page only exists once something has published the package. npmjs.org has
-# no "create package" button, so the first publish of every new package has to be
-# authenticated with a token.
+# Purpose: create scoped packages that do not exist on npmjs.org yet.
 #
-# Run this once, then for each package configure the trusted publisher, revoke the
-# NPM_TOKEN secret and delete this file. Publish.yml then runs without any secret.
+# Trusted publishing (OIDC) cannot do this. A trusted publisher is configured on a
+# package's settings page on npmjs.com, and that page only exists once something has
+# published the package. npmjs.org has no "create package" button, so the first
+# publish of every new name has to be authenticated with a token. After that, the
+# normal workflow publishes over OIDC with no secret at all.
+#
+# Before use, adapt:
+#   environment            the GitHub environment holding NPM_TOKEN
+#   NPM_TOKEN              classic Automation token, read and write on the target
+#                          scope. It must not be a granular token with the bypass
+#                          two-factor option, which loses direct publish in January
+#                          2027, and which npm trust also refuses later
+#   Set bootstrap version  lerna.json is specific to a fixed mode monorepo. For a
+#                          single package use npm version against package.json
+#   Build                  replace the turbo build with whatever the repository uses
+#   Publish                yarn workspaces foreach is specific to a monorepo. For a
+#                          single package use npm publish directly
+#
+# Keep --access public and --tag <something other than latest>. Scoped packages
+# default to restricted access, which npm refuses to publish with provenance, and
+# npm points latest at whatever is published first regardless of the tag given, so
+# expect to repoint latest with the first real release.
+#
+# Afterwards, configure a trusted publisher for each new name. In this repository
+# that is tools/configure-npm-trust.sh.
 name: Bootstrap npm packages
 
 on:
@@ -74,6 +94,9 @@ jobs:
         timeout-minutes: 20
         run: yarn turbo run build --concurrency=2
 
+      # No --provenance. It would work here, but a provenance failure cancels the
+      # whole publish, and this run only needs to create the names. The normal
+      # workflow attests the versions that matter.
       - name: Publish bootstrap versions
         timeout-minutes: 15
         env:

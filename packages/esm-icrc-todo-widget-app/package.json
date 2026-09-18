@@ -1,7 +1,7 @@
 {
   "name": "@icrc/esm-icrc-todo-widget-app",
   "version": "4.0.0",
-  "license": "MPL-2.0",
+  "license": "BSD-3-Clause",
   "description": "Todo widget microfrontend for the OpenMRS SPA",
   "browser": "dist/esm-icrc-todo-widget-app.js",
   "main": "src/index.ts",

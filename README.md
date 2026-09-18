@@ -83,7 +83,6 @@ Publishing runs on GitHub Actions. All workflows are currently manual (`workflow
 - [`build.yml`](./.github/workflows/build.yml): lint, type check, test and build.
 - [`publish.yml`](./.github/workflows/publish.yml): publishes to npm. See [Publishing](#publishing) below.
 - [`codeql-analysis.yml`](./.github/workflows/codeql-analysis.yml): CodeQL code scanning.
-- [`bootstrap-npm.yml`](./.github/workflows/bootstrap-npm.yml): one-off, creates the `@icrc/*` package names on npmjs.org. See the comment at the top of that file.
 
 The original triggers are commented out in each file rather than deleted, with a note on when to restore them. CodeQL additionally has to be re-enabled from the Actions tab, because GitHub marks a workflow left without triggers as disabled rather than simply idle.
 
@@ -126,10 +125,30 @@ Each published version carries a [provenance attestation](https://docs.npmjs.com
 
 ### Adding a package to the publish
 
-A new package needs its own trusted publisher entry before it can be published, otherwise the publish fails on it with a 404, which is the same response npm gives for a package that does not exist. Run:
+Adding a package to `packages/` is not enough. A name that has never been published needs two things set up, in this order, and until both are done `publish.yml` fails on it and stops, because it publishes topologically.
+
+**1. Create the name on npmjs.org.** Trusted publishing cannot do this. A trusted publisher is configured on a package settings page that only exists once the package has been published, so the very first publish of a name has to be authenticated with a token. Publish one throwaway version by hand:
+
+```sh
+npm publish --access public --tag bootstrap
+```
+
+Use a classic Automation token, or run it interactively and answer the two-factor prompt. A granular token that bypasses two-factor authentication loses direct publish capability from January 2027, so prefer the interactive route.
+
+**2. Configure the trusted publisher.**
 
 ```sh
 ./tools/configure-npm-trust.sh
 ```
 
 Read the header of that script first: it needs npm 11.15.0 or later, a real terminal for its browser two-factor challenge, and a login that is not a token which bypasses two-factor authentication. Use `--verify-only` to report what is currently configured.
+
+If step 2 is skipped, the publish fails with a 404, which is the same response npm gives for a package that does not exist. The message does not distinguish the two cases, so check `--verify-only` before assuming which one you have hit.
+
+For a batch of new packages, or for another repository facing the same problem, [`tools/bootstrap-npm.yml.template`](./tools/bootstrap-npm.yml.template) is the workflow that did step 1 for the original sixteen in a single run.
+
+Copy it to `.github/workflows/`, run it once, then delete it and revoke its token.
+
+Its header lists what to adapt. The version stamping and the publish command are specific to a fixed mode monorepo, and the token must be a classic Automation token rather than a granular one that bypasses two-factor authentication.
+
+It is kept as a template rather than a live workflow so that nothing holding an npm token sits in `.github/workflows/` once the names exist.
