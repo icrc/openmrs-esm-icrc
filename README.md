@@ -81,6 +81,55 @@ New packages should go as a folder in the `packages` section. Ideally, new packa
 Publishing runs on GitHub Actions. All workflows are currently manual (`workflow_dispatch`) while the npm publishing setup is being stabilized:
 
 - [`build.yml`](./.github/workflows/build.yml): lint, type check, test and build.
-- [`publish.yml`](./.github/workflows/publish.yml): publishes to npm. Leave the `release` input unchecked for a pre-release on the `pre` dist-tag, or check it for a full release, which also tags the commit and opens the version-bump pull request.
+- [`publish.yml`](./.github/workflows/publish.yml): publishes to npm. See [Publishing](#publishing) below.
 - [`codeql-analysis.yml`](./.github/workflows/codeql-analysis.yml): CodeQL code scanning.
 - [`bootstrap-npm.yml`](./.github/workflows/bootstrap-npm.yml): one-off, creates the `@icrc/*` package names on npmjs.org. See the comment at the top of that file.
+
+The original triggers are commented out in each file rather than deleted, with a note on when to restore them. CodeQL additionally has to be re-enabled from the Actions tab, because GitHub marks a workflow left without triggers as disabled rather than simply idle.
+
+
+## Publishing
+
+### Versioning
+
+Lerna runs in fixed mode, so `lerna.json` holds one version that all packages share. The `version` fields in the individual `packages/*/package.json` files are overwritten by `lerna version` during the build and are only there to keep local tooling happy. To change the release line, change `lerna.json`.
+
+### Running a publish
+
+Dispatch [`publish.yml`](./.github/workflows/publish.yml) from the Actions tab. Two inputs control what happens:
+
+| `release` | `bump` | Result |
+| --- | --- | --- |
+| unchecked | ignored | Publishes `<version>-pre.<run number>` on the `pre` dist-tag. Nothing is tagged and `main` is untouched. |
+| checked | `patch` | Publishes `<version>`, claims the `latest` tag, tags the commit, then opens a pull request lining `main` up for the next patch. |
+| checked | `minor` | As above, lining `main` up for the next minor. This is the default. |
+| checked | `major` | As above, lining `main` up for the next major. |
+| checked | `none` | Publishes and tags only. `main` is left alone. |
+
+The version bump arrives as a pull request, so it has to be merged to prepare `main` for the next cycle.
+
+Until it is merged, `main` still carries the version just released. A pre-release dispatched in that window therefore republishes a `-pre.N` of it, sorting below the release. Harmless on the `pre` tag, but it reads oddly.
+
+### Releasing a patch
+
+Releasing `4.0.1` after `4.0.0` is a matter of choosing `bump: patch` when releasing `4.0.0`, which lines `main` up for `4.0.1` instead of `4.1.0`.
+
+A hotfix is different: `main` has moved on and the patch must ship without the work that landed since. Cut a branch from the release tag and cherry-pick the fix. Set the version with `yarn lerna version 4.0.1 --no-git-tag-version --no-push --yes`. Dispatch from that branch with `bump: none`, so it leaves `main` alone.
+
+Note that the commit tagged by a release is whichever commit was dispatched, so check the branch before releasing.
+
+### Authentication and provenance
+
+The workflow holds no npm token. It authenticates with [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/) over OIDC, which is why the job declares `environment: npm` and the workflow requests `id-token: write`. Trusted publishing is configured per package, matching on the repository, the workflow filename and the environment name.
+
+Each published version carries a [provenance attestation](https://docs.npmjs.com/generating-provenance-statements/) linking it to the commit and workflow run that produced it. This requires the repository to stay public and each manifest to declare a `repository` that matches this repository. Making the repository private again would break provenance, and the publish would fail rather than silently degrade.
+
+### Adding a package to the publish
+
+A new package needs its own trusted publisher entry before it can be published, otherwise the publish fails on it with a 404, which is the same response npm gives for a package that does not exist. Run:
+
+```sh
+./tools/configure-npm-trust.sh
+```
+
+Read the header of that script first: it needs npm 11.15.0 or later, a real terminal for its browser two-factor challenge, and a login that is not a token which bypasses two-factor authentication. Use `--verify-only` to report what is currently configured.

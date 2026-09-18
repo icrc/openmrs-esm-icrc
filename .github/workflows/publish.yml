@@ -1,11 +1,14 @@
 name: Publish
 
 # Manual only. Every push to main used to publish a pre-release, which was the
-# bulk of the CI noise. The "release" input now selects which path runs, so both
+# bulk of the CI noise. The "release" input selects which path runs, so both
 # behaviours are still reachable:
 #   unchecked -> pre-release on the "pre" dist-tag (what the push trigger did)
 #   checked   -> full release: publishes latest, tags, opens the version-bump PR
 # Restore the push trigger below if automatic pre-releases are wanted again.
+#
+# The version itself comes from lerna.json, which every package inherits. The
+# "bump" input decides what main is lined up for once a release is out.
 on:
   workflow_dispatch:
     inputs:
@@ -13,6 +16,15 @@ on:
         description: "Publish a full release (tag + latest). Leave unchecked for a pre-release."
         type: boolean
         default: false
+      bump:
+        description: "Version to prepare on main after the release. Ignored for a pre-release."
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+          - none
+        default: minor
   # push:
   #   branches: [main]
 
@@ -109,14 +121,17 @@ jobs:
           git push origin "$CURRENT_PROJECT_VERSION"
           gh release create "$CURRENT_PROJECT_VERSION"
 
+      # Choose "patch" here to line main up for 4.0.1 rather than 4.1.0. Choose
+      # "none" to leave main untouched, which is what a hotfix released from a
+      # release branch wants.
       - name: Move to next Version
-        if: ${{ inputs.release }}
-        run: yarn lerna version minor --no-git-tag-version --no-push --yes
+        if: ${{ inputs.release && inputs.bump != 'none' }}
+        run: yarn lerna version ${{ inputs.bump }} --no-git-tag-version --no-push --yes
 
       # This step creates a PR to bump the version to the next minor snapshot.
       # The PR must be accepted and merged to prepare main for the next release cycle.
       - name: Create Branch and PR for next Version preparation
-        if: ${{ inputs.release }}
+        if: ${{ inputs.release && inputs.bump != 'none' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
