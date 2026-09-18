@@ -22,6 +22,11 @@
   "keywords": [
     "openmrs"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icrc/openmrs-esm-icrc.git",
+    "directory": "packages/esm-mhpss-dashboard-app"
+  },
   "publishConfig": {
     "access": "public"
   },

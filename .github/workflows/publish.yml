@@ -1,9 +1,20 @@
 name: Publish
 
+# Manual only. Every push to main used to publish a pre-release, which was the
+# bulk of the CI noise. The "release" input now selects which path runs, so both
+# behaviours are still reachable:
+#   unchecked -> pre-release on the "pre" dist-tag (what the push trigger did)
+#   checked   -> full release: publishes latest, tags, opens the version-bump PR
+# Restore the push trigger below if automatic pre-releases are wanted again.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
+    inputs:
+      release:
+        description: "Publish a full release (tag + latest). Leave unchecked for a pre-release."
+        type: boolean
+        default: false
+  # push:
+  #   branches: [main]
 
 permissions:
   id-token: write # Required for npm trusted publishers (OIDC)
@@ -55,7 +66,7 @@ jobs:
       # Version must be set before building: @openmrs/webpack-config stamps the
       # package version into each bundle.
       - name: Set pre-release version
-        if: github.event_name == 'push'
+        if: ${{ !inputs.release }}
         run: |
           BASE=$(node -e "const v=require('./lerna.json').version; if(!v) throw new Error('no version in lerna.json'); console.log(v)")
           yarn lerna version "${BASE}-pre.${{ github.run_number }}" --no-git-tag-version --no-push --yes
@@ -73,23 +84,23 @@ jobs:
         run: yarn turbo run build --concurrency=2
 
       - name: Publish pre-release
-        if: github.event_name == 'push'
+        if: ${{ !inputs.release }}
         timeout-minutes: 15
         run: yarn workspaces foreach -A --no-private --topological exec npm publish --provenance --access public --tag pre
 
       - name: Publish release
-        if: github.event_name == 'workflow_dispatch'
+        if: ${{ inputs.release }}
         timeout-minutes: 15
         run: yarn workspaces foreach -A --no-private --topological exec npm publish --provenance --access public
 
       - name: Git Config
-        if: github.event_name == 'workflow_dispatch'
+        if: ${{ inputs.release }}
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
 
       - name: Git tag
-        if: github.event_name == 'workflow_dispatch'
+        if: ${{ inputs.release }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -99,13 +110,13 @@ jobs:
           gh release create "$CURRENT_PROJECT_VERSION"
 
       - name: Move to next Version
-        if: github.event_name == 'workflow_dispatch'
+        if: ${{ inputs.release }}
         run: yarn lerna version minor --no-git-tag-version --no-push --yes
 
       # This step creates a PR to bump the version to the next minor snapshot.
       # The PR must be accepted and merged to prepare main for the next release cycle.
       - name: Create Branch and PR for next Version preparation
-        if: github.event_name == 'workflow_dispatch'
+        if: ${{ inputs.release }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
