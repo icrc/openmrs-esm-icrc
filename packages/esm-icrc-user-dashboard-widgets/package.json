@@ -1,6 +1,6 @@
 {
   "name": "@icrc/esm-icrc-user-dashboard-widgets",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "license": "BSD-3-Clause",
   "description": "ICRC dashboard widgets microfrontend for the OpenMRS SPA",
   "main": "dist/diop-esm-icrc-user-dashboard-widgets.js",

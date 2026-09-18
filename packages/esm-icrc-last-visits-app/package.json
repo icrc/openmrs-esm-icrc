@@ -1,6 +1,6 @@
 {
   "name": "@icrc/esm-icrc-last-visits-app",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "license": "BSD-3-Clause",
   "description": "Last visits microfrontend for the OpenMRS SPA",
   "browser": "dist/esm-icrc-last-visits-app.js",
