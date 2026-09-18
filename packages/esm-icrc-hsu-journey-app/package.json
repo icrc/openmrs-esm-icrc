@@ -1,6 +1,6 @@
 {
   "name": "@icrc/esm-prp-hsu-journey-app",
-  "version": "3.2.0",
+  "version": "4.0.0",
   "license": "MPL-2.0",
   "description": "HSU Journey microfrontend for the OpenMRS SPA",
   "browser": "dist/openmrs-esm-hsu-journey-app.js",

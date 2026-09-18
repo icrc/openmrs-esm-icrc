@@ -1,6 +1,6 @@
 {
   "name": "@icrc/esm-icrc-data-sources",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "license": "MPL-2.0",
   "description": "ICRC custom datasources microfrontend for the OpenMRS SPA",
   "browser": "dist/esm-icrc-data-sources.js",

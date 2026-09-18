@@ -1,6 +1,6 @@
 {
   "name": "@icrc/esm-icrc-erp-widget-app",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "license": "MPL-2.0",
   "description": "ERP Widgets microfrontend for the OpenMRS SPA",
   "browser": "dist/esm-icrc-erp-widget-app.js",
