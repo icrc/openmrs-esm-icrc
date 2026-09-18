@@ -1,6 +1,6 @@
 {
   "name": "@icrc/esm-recent-activities-app",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "description": "Recent activities microfrontend for the OpenMRS SPA",
   "browser": "dist/esm-recent-activities-app.js",
   "main": "src/index.ts",

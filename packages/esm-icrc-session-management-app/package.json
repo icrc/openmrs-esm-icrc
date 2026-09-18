@@ -1,6 +1,6 @@
 {
   "name": "@icrc/esm-icrc-session-management-app",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "description": "Session management microfrontend for the OpenMRS SPA",
   "browser": "dist/esm-icrc-session-management-app.js",
   "main": "src/index.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@icrc/esm-mhpss-dashboard-app",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "license": "MPL-2.0",
   "description": "MHPSS Dashboard microfrontend for the OpenMRS SPA",
   "browser": "dist/esm-mhpss-dashboard-app.js",
