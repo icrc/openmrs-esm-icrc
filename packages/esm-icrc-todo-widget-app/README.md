@@ -1,6 +1,6 @@
-# @icrc/esm-prp-hsu-journey-app
+# @icrc/esm-icrc-todo-widget-app
 
-HSU Journey microfrontend for the OpenMRS SPA.
+Todo widget microfrontend for the OpenMRS SPA.
 
 Part of [openmrs-esm-icrc](https://github.com/icrc/openmrs-esm-icrc), a monorepo of OpenMRS 3.x frontend modules maintained by the ICRC.
 

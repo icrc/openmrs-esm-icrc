@@ -1,7 +1,7 @@
 {
   "name": "@icrc/esm-patient-mental-health-app",
   "version": "4.0.0",
-  "license": "MPL-2.0",
+  "license": "BSD-3-Clause",
   "description": "Mental Health microfrontend for the OpenMRS SPA",
   "browser": "dist/openmrs-esm-patient-mental-health-app.js",
   "main": "src/index.ts",
