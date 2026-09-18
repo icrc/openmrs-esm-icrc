@@ -36,7 +36,7 @@
     "@carbon/react": "^1.83.0",
     "@openmrs/esm-patient-common-lib": "next",
     "lodash-es": "^4.17.21",
-    "uuid": "^8.3.2"
+    "uuid": "^14.0.2"
   },
   "devDependencies": {
     "@types/uuid": "^8.3.0",
