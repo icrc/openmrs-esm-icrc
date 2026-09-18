@@ -8,7 +8,7 @@ This repository is a [monorepo](https://en.wikipedia.org/wiki/Monorepo) that use
 
 
 # Access to ICRC Nexus instance
-https://tfs.ext.icrc.org/ICRCCollection/DevOps%20Portal/_wiki/wikis/DevOps%20Wiki/14980/How-to-connect-to-Nexus-with-npm-and-yarn
+ICRC staff: see the page "How to connect to Nexus with npm and yarn" in the internal DevOps wiki.
 
 # Corepack, offline installation and corepack.tgz
 - use `corepack enable` to activate corepack. 
@@ -78,5 +78,9 @@ New packages should go as a folder in the `packages` section. Ideally, new packa
 
 ## Pipelines
 
-- [openmrs-esm-icrc](https://tfs.ext.icrc.org/ICRCCollection/Pearlii/_build?definitionId=1827) defined by [azure-pipelines.yml](./azure-pipelines.yml): build, validate, launch SonarQube and deploy with version `3.1.0-dev-yyyyMMdd-rr`
-- [openmrs-esm-icrc Release](https://tfs.ext.icrc.org/ICRCCollection/Pearlii/_build?definitionId=1832) defined by [azure-pipelines-release.yml](./azure-pipelines-release.yml): build, validate, tag sources and deploy with version `3.1.0-yyyyMMdd-rr`
+Publishing runs on GitHub Actions. All workflows are currently manual (`workflow_dispatch`) while the npm publishing setup is being stabilized:
+
+- [`build.yml`](./.github/workflows/build.yml): lint, type check, test and build.
+- [`publish.yml`](./.github/workflows/publish.yml): publishes to npm. Leave the `release` input unchecked for a pre-release on the `pre` dist-tag, or check it for a full release, which also tags the commit and opens the version-bump pull request.
+- [`codeql-analysis.yml`](./.github/workflows/codeql-analysis.yml): CodeQL code scanning.
+- [`bootstrap-npm.yml`](./.github/workflows/bootstrap-npm.yml): one-off, creates the `@icrc/*` package names on npmjs.org. See the comment at the top of that file.

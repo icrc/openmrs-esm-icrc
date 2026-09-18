@@ -22,13 +22,17 @@
   "keywords": [
     "openmrs"
   ],
-  "homepage": "https://tfs.ext.icrc.org/ICRCCollection/Pearlii/_git/openmrs-esm-icrc?path=%2FREADME.md",
+  "homepage": "https://github.com/icrc/openmrs-esm-icrc#readme",
   "repository": {
     "type": "git",
-    "url": "https://tfs.ext.icrc.org/ICRCCollection/Pearlii/_git/openmrs-esm-icrc"
+    "url": "git+https://github.com/icrc/openmrs-esm-icrc.git",
+    "directory": "packages/esm-icrc-hcd-dashboard-app"
   },
   "bugs": {
-    "url": "https://github.com/openmrs/openmrs-esm-patient-chart/issues"
+    "url": "https://github.com/icrc/openmrs-esm-icrc/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "@carbon/charts-react": "^1.5.2",

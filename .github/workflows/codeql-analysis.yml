@@ -11,14 +11,18 @@
 #
 name: "CodeQL"
 
+# Manual only, to keep CI noise down while the npm publishing setup is being
+# sorted out. Restore the triggers below afterwards: the weekly schedule is what
+# keeps code scanning results from going stale.
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ "main" ]
-  schedule:
-    - cron: '17 1 * * 0'
+  workflow_dispatch:
+  # push:
+  #   branches: [ "main" ]
+  # pull_request:
+  #   # The branches below must be a subset of the branches above
+  #   branches: [ "main" ]
+  # schedule:
+  #   - cron: '17 1 * * 0'
 
 jobs:
   analyze:
