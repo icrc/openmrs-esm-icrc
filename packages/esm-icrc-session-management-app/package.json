@@ -35,7 +35,7 @@
     "@openmrs/esm-framework": "next",
     "@openmrs/esm-patient-common-lib": "next",
     "i18next": "^23.10.1",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.23"
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "8.x",
