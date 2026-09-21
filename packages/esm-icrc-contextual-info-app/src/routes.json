@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "extensions": [
+    {
+      "name": "icrc-workflow-message",
+      "component": "workflowMessage",
+      "slot": "top-nav-info-slot"
+    }
+  ]
+}
