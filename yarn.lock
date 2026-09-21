@@ -2117,7 +2117,7 @@ __metadata:
     "@carbon/charts-react": "npm:^1.5.2"
     "@carbon/react": "npm:^1.83.0"
     d3: "npm:^7.6.1"
-    lodash-es: "npm:^4.17.21"
+    lodash-es: "npm:^4.18.1"
     webpack: "npm:^5.99.9"
     webpack-cli: "npm:^6.0.1"
     webpack-dev-server: "npm:^5.2.2"
@@ -2140,7 +2140,7 @@ __metadata:
     "@carbon/react": "npm:^1.83.0"
     "@openmrs/esm-patient-common-lib": "npm:next"
     "@types/uuid": "npm:^9.0.4"
-    lodash-es: "npm:^4.17.21"
+    lodash-es: "npm:^4.18.1"
     rxjs: "npm:7.x"
     single-spa: "npm:6.x"
     single-spa-react: "npm:6.x"
@@ -2163,7 +2163,7 @@ __metadata:
   dependencies:
     "@carbon/react": "npm:^1.83.0"
     d3: "npm:^7.0.3"
-    lodash-es: "npm:^4.17.21"
+    lodash-es: "npm:^4.18.1"
     webpack: "npm:^5.99.9"
     webpack-cli: "npm:^6.0.1"
     webpack-dev-server: "npm:^5.2.2"
@@ -2187,7 +2187,7 @@ __metadata:
     "@carbon/react": "npm:^1.83.0"
     "@openmrs/esm-patient-common-lib": "npm:next"
     "@types/uuid": "npm:^8.3.0"
-    lodash-es: "npm:^4.17.21"
+    lodash-es: "npm:^4.18.1"
     uuid: "npm:^8.3.2"
     webpack: "npm:^5.99.9"
     webpack-cli: "npm:^6.0.1"
@@ -2211,7 +2211,7 @@ __metadata:
     "@carbon/react": "npm:^1.83.0"
     "@openmrs/esm-patient-common-lib": "npm:next"
     "@types/uuid": "npm:^8.3.0"
-    lodash-es: "npm:^4.17.21"
+    lodash-es: "npm:^4.18.1"
     single-spa: "npm:6.x"
     single-spa-react: "npm:^6.0.0"
     uuid: "npm:^8.3.2"
@@ -2238,7 +2238,7 @@ __metadata:
     "@carbon/react": "npm:^1.83.0"
     "@openmrs/esm-patient-common-lib": "npm:next"
     "@types/uuid": "npm:^8.3.0"
-    lodash-es: "npm:^4.17.21"
+    lodash-es: "npm:^4.18.1"
     uuid: "npm:^8.3.2"
     webpack: "npm:^5.99.9"
     webpack-cli: "npm:^6.0.1"
@@ -2261,7 +2261,7 @@ __metadata:
     "@carbon/react": "npm:^1.83.0"
     "@openmrs/esm-patient-common-lib": "npm:next"
     d3: "npm:^7.0.3"
-    lodash-es: "npm:^4.17.21"
+    lodash-es: "npm:^4.18.1"
     webpack: "npm:^5.99.9"
     webpack-cli: "npm:^6.0.1"
     webpack-dev-server: "npm:^5.2.2"
@@ -2284,7 +2284,7 @@ __metadata:
     "@openmrs/esm-framework": "npm:next"
     "@openmrs/esm-patient-common-lib": "npm:next"
     i18next: "npm:^23.10.1"
-    lodash-es: "npm:^4.17.21"
+    lodash-es: "npm:^4.18.1"
     react-hook-form: "npm:^7.34.2"
     webpack: "npm:^5.99.9"
   peerDependencies:
@@ -2303,7 +2303,7 @@ __metadata:
   dependencies:
     "@carbon/react": "npm:^1.83.0"
     d3: "npm:^7.0.3"
-    lodash-es: "npm:^4.17.21"
+    lodash-es: "npm:^4.18.1"
     webpack: "npm:^5.99.9"
     webpack-cli: "npm:^6.0.1"
     webpack-dev-server: "npm:^5.2.2"
@@ -2325,7 +2325,7 @@ __metadata:
     "@carbon/react": "npm:^1.83.0"
     "@openmrs/esm-patient-common-lib": "npm:next"
     d3: "npm:^7.0.3"
-    lodash-es: "npm:^4.17.21"
+    lodash-es: "npm:^4.18.1"
     webpack: "npm:^5.99.9"
     webpack-cli: "npm:^6.0.1"
     webpack-dev-server: "npm:^5.2.2"
@@ -2360,7 +2360,7 @@ __metadata:
     "@carbon/react": "npm:^1.83.0"
     "@openmrs/esm-patient-common-lib": "npm:next"
     d3: "npm:^7.6.1"
-    lodash-es: "npm:^4.17.21"
+    lodash-es: "npm:^4.18.1"
     webpack: "npm:^5.99.9"
     webpack-cli: "npm:^6.0.1"
     webpack-dev-server: "npm:^5.2.2"
@@ -2384,7 +2384,7 @@ __metadata:
     "@openmrs/esm-framework": "npm:next"
     "@openmrs/esm-patient-common-lib": "npm:next"
     d3: "npm:^7.6.1"
-    lodash-es: "npm:^4.17.21"
+    lodash-es: "npm:^4.18.1"
     webpack: "npm:^5.99.9"
   peerDependencies:
     "@openmrs/esm-framework": 8.x
@@ -2405,7 +2405,7 @@ __metadata:
     "@carbon/react": "npm:^1.83.0"
     "@openmrs/esm-patient-common-lib": "npm:next"
     d3: "npm:^7.6.1"
-    lodash-es: "npm:^4.17.21"
+    lodash-es: "npm:^4.18.1"
     webpack: "npm:^5.99.9"
     webpack-cli: "npm:^6.0.1"
     webpack-dev-server: "npm:^5.2.2"
@@ -2429,7 +2429,7 @@ __metadata:
     "@carbon/react": "npm:^1.83.0"
     "@openmrs/esm-patient-common-lib": "npm:next"
     d3: "npm:^7.0.3"
-    lodash-es: "npm:^4.17.21"
+    lodash-es: "npm:^4.18.1"
     webpack: "npm:^5.99.9"
     webpack-cli: "npm:^6.0.1"
     webpack-dev-server: "npm:^5.2.2"
@@ -2453,7 +2453,7 @@ __metadata:
     "@carbon/react": "npm:^1.83.0"
     "@openmrs/esm-framework": "npm:next"
     "@openmrs/esm-patient-common-lib": "npm:next"
-    lodash-es: "npm:^4.17.21"
+    lodash-es: "npm:^4.18.1"
     webpack: "npm:^5.99.9"
   peerDependencies:
     "@openmrs/esm-framework": 8.x
@@ -2481,7 +2481,7 @@ __metadata:
     "@testing-library/react": "npm:^15.0.7"
     "@testing-library/user-event": "npm:^14.5.2"
     "@types/jest": "npm:^29.5.11"
-    "@types/lodash-es": "npm:^4.17.3"
+    "@types/lodash-es": "npm:^4.17.21"
     "@types/react": "npm:^18.3.21"
     "@types/react-dom": "npm:^18.3.0"
     "@types/webpack-env": "npm:^1.18.8"
@@ -2506,7 +2506,7 @@ __metadata:
     jest-environment-jsdom: "npm:^30.1.1"
     jest-junit: "npm:^15.0.0"
     lerna: "npm:^7.3.0"
-    lodash: "npm:^4.17.21"
+    lodash: "npm:^4.17.23"
     openmrs: "npm:next"
     prettier: "npm:^3.1.1"
     pretty-quick: "npm:^2.0.2"
@@ -7848,7 +7848,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash-es@npm:^4.17.3":
+"@types/lodash-es@npm:4.17.12":
   version: 4.17.12
   resolution: "@types/lodash-es@npm:4.17.12"
   dependencies:
@@ -16305,10 +16305,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash-es@npm:4.17.23":
-  version: 4.17.23
-  resolution: "lodash-es@npm:4.17.23"
-  checksum: 10/1feae200df22eb0bd93ca86d485e77784b8a9fb1d13e91b66e9baa7a7e5e04be088c12a7e20c2250fc0bd3db1bc0ef0affc7d9e3810b6af2455a3c6bf6dde59e
+"lodash-es@npm:^4.17.23":
+  version: 4.18.1
+  resolution: "lodash-es@npm:4.18.1"
+  checksum: 10/8bfad225ef09ef42b04283cdaf7830efcc2ba29ae41b56501c74422155ee1ccaa1f0f6e8319def3451a1fe54dec501c8e4bee622bae2b2d98ac993731e0a5cce
   languageName: node
   linkType: hard
 
@@ -16358,6 +16358,13 @@ __metadata:
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 10/c08619c038846ea6ac754abd6dd29d2568aa705feb69339e836dfa8d8b09abbb2f859371e86863eda41848221f9af43714491467b5b0299122431e202bb0c532
+  languageName: node
+  linkType: hard
+
+"lodash@npm:^4.17.23":
+  version: 4.18.1
+  resolution: "lodash@npm:4.18.1"
+  checksum: 10/306fea53dfd39dad1f03d45ba654a2405aebd35797b673077f401edb7df2543623dc44b9effbb98f69b32152295fff725a4cec99c684098947430600c6af0c3f
   languageName: node
   linkType: hard
 
