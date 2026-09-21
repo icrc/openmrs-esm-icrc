@@ -56,14 +56,14 @@ jobs:
         run: echo "dir=$(yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
 
       - name: Cache Yarn
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ${{ steps.yarn-cache.outputs.dir }}
           key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
           restore-keys: yarn-${{ runner.os }}-
 
       - name: Cache Turbo
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             .turbo/cache
