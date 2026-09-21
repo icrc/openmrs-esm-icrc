@@ -2504,7 +2504,7 @@ __metadata:
     jest: "npm:^29.7.0"
     jest-cli: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^30.1.1"
-    jest-junit: "npm:^15.0.0"
+    jest-junit: "npm:^17.0.0"
     lerna: "npm:^7.3.0"
     lodash: "npm:^4.17.21"
     openmrs: "npm:next"
@@ -15392,15 +15392,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-junit@npm:^15.0.0":
-  version: 15.0.0
-  resolution: "jest-junit@npm:15.0.0"
+"jest-junit@npm:^17.0.0":
+  version: 17.0.0
+  resolution: "jest-junit@npm:17.0.0"
   dependencies:
     mkdirp: "npm:^1.0.4"
     strip-ansi: "npm:^6.0.1"
-    uuid: "npm:^8.3.2"
+    uuid: "npm:^14.0.0"
     xml: "npm:^1.0.1"
-  checksum: 10/9e73cd87e042cdf1e79d775ab76598abf01da57c55e8f9f44d7f0988784685a720ab1434ae56ea2db997928824e35a491a9de32487f759f0135907f2765aaf25
+  checksum: 10/707e96d591c310c9bdbbb8713a43ca57a87b6d226c856b1336ed6f4874a1921116130b7fcf41d99c234208305b2161976c03a95f4459c1e35ca2b0bdb489cd5d
   languageName: node
   linkType: hard
 
@@ -22412,6 +22412,15 @@ __metadata:
   version: 1.0.1
   resolution: "utils-merge@npm:1.0.1"
   checksum: 10/5d6949693d58cb2e636a84f3ee1c6e7b2f9c16cb1d42d0ecb386d8c025c69e327205aa1c69e2868cc06a01e5e20681fbba55a4e0ed0cce913d60334024eae798
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^14.0.0":
+  version: 14.0.2
+  resolution: "uuid@npm:14.0.2"
+  bin:
+    uuid: dist-node/bin/uuid
+  checksum: 10/e8263a76ad7b2d1f246df5a48a5bdf30d886eedbb1d3d74c75356d02b2966f5fffd7790b85afdb3682e4e732d13fca7974626419814f45de6847f78ce03c745e
   languageName: node
   linkType: hard
 
