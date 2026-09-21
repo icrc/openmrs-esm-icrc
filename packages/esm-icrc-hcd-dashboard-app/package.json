@@ -38,7 +38,7 @@
     "@carbon/charts-react": "^1.5.2",
     "@carbon/react": "^1.83.0",
     "d3": "^7.6.1",
-    "lodash-es": "npm:^4.17.23"
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "webpack": "^5.99.9",
