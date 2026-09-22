@@ -37,7 +37,7 @@
     "rxjs": "7.x"
   },
   "devDependencies": {
-    "@openmrs/esm-patient-common-lib": "^12.3.5-pre.12348",
+    "@openmrs/esm-patient-common-lib": "next",
     "@types/uuid": "^9.0.4",
     "single-spa": "6.x",
     "single-spa-react": "6.x",

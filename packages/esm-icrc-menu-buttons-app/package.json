@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@carbon/react": "^1.83.0",
-    "@openmrs/esm-patient-common-lib": "^12.3.5-pre.12348",
+    "@openmrs/esm-patient-common-lib": "next",
     "d3": "^7.0.3",
     "lodash-es": "^4.17.21"
   },

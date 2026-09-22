@@ -38,9 +38,9 @@
   },
   "devDependencies": {
     "@jsenv/file-size-impact": "12.1.10",
-    "@openmrs/esm-framework": "^10.0.1-pre.5462",
-    "@openmrs/esm-patient-common-lib": "^12.3.5-pre.12348",
-    "@openmrs/esm-patient-forms-app": "^12.3.5-pre.12348",
+    "@openmrs/esm-framework": "next",
+    "@openmrs/esm-patient-common-lib": "next",
+    "@openmrs/esm-patient-forms-app": "next",
     "@swc/cli": "^0.7.9",
     "@swc/core": "^1.15.1",
     "@swc/jest": "^0.2.39",
@@ -107,6 +107,6 @@
     "rxjs": "6.x"
   },
   "dependencies": {
-    "@openmrs/webpack-config": "^10.0.1-pre.5462"
+    "@openmrs/webpack-config": "next"
   }
 }
