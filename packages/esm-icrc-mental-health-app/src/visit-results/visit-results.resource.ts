@@ -57,9 +57,9 @@ export function useVisitResults(patientUuid: string, encounterTypes: Array<strin
     //iterate each observation of the form filled
     e.obs?.forEach((o) => {
       if (obsUuids.includes(o?.concept?.uuid)) {
-        if (
-          !(obsObject[String(e.encounterType.uuid)] && obsObject[String(e.encounterType.uuid)][String(o.concept?.uuid)])
-        ) {
+        if (!(
+          obsObject[String(e.encounterType.uuid)] && obsObject[String(e.encounterType.uuid)][String(o.concept?.uuid)]
+        )) {
           obsObject[String(e.encounterType.uuid)][String(o.concept?.uuid)] = [];
         }
 

@@ -46,9 +46,9 @@ export function useSymptoms(
   encounterTypesfiltered?.forEach((e) => {
     e.obs?.forEach((o) => {
       if (obsUuids.includes(o?.concept?.uuid)) {
-        if (
-          !(obsObject[String(e.encounterType.uuid)] && obsObject[String(e.encounterType.uuid)][String(o.concept?.uuid)])
-        ) {
+        if (!(
+          obsObject[String(e.encounterType.uuid)] && obsObject[String(e.encounterType.uuid)][String(o.concept?.uuid)]
+        )) {
           obsObject[String(e.encounterType.uuid)][String(o.concept?.uuid)] = [];
         }
 
