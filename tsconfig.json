@@ -19,11 +19,6 @@
     ],
     "resolveJsonModule": true,
     "noEmit": true,
-    "target": "esnext",
-    "paths": {
-      "@openmrs/*": ["./node_modules/@openmrs/*"],
-      "@icrc/*": ["./node_modules/@icrc/*"]
-    },
-    "typeRoots": ["./node_modules/@types", "./node_modules/testing-library"]
+    "target": "esnext"
   }
 }
