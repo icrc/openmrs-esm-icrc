@@ -36,7 +36,6 @@
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
-    "@openmrs/esm-patient-common-lib": "next",
     "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"

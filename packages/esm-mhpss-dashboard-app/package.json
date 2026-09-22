@@ -33,7 +33,6 @@
   "dependencies": {
     "@carbon/charts-react": "^1.5.2",
     "@carbon/react": "^1.83.0",
-    "@openmrs/esm-patient-common-lib": "next",
     "d3": "^7.6.1",
     "lodash-es": "^4.17.21"
   },
