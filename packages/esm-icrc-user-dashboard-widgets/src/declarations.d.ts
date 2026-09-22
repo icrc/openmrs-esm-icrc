@@ -1,10 +1,10 @@
-declare module '*.css';
+declare module "*.css";
 
-declare module '*.json' {
+declare module "*.json" {
   const value: any;
   export default value;
 }
 
-declare module '@openmrs/esm-api';
+declare module "@openmrs/esm-api";
 
-declare module 'JSX';
+declare module "JSX";

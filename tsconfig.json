@@ -5,16 +5,7 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "maxNodeModuleJsDepth": 0,
     "moduleResolution": "node",
-    "baseUrl": ".",
-    "typeRoots": ["./node_modules/@types"],
-    "paths": {
-      "@openmrs/*": [
-        "node_modules/@openmrs/*"
-      ]
-    },
     "lib": [
       "dom",
       "es5",
@@ -28,11 +19,11 @@
     ],
     "resolveJsonModule": true,
     "noEmit": true,
-    "target": "esnext"
-  },
-  "exclude": [
-    "node_modules",
-    "**/node_modules",
-    "../../node_modules"
-  ]
+    "target": "esnext",
+    "paths": {
+      "@openmrs/*": ["./node_modules/@openmrs/*"],
+      "@icrc/*": ["./node_modules/@icrc/*"]
+    },
+    "typeRoots": ["./node_modules/@types", "./node_modules/testing-library"]
+  }
 }

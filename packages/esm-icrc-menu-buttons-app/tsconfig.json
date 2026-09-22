@@ -1,6 +1,5 @@
 {
   "extends": "../../tsconfig.json",
   "include": ["src/**/*"],
-  "exclude": ["../../node_modules", "node_modules", "src/**/*.test.tsx", "src/**/*.outdated.tsx"],
-  "compilerOptions": {"skipLibCheck": true}
+  "exclude": ["src/**/*.test.tsx", "src/**/*.outdated.tsx"]
 }
