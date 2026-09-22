@@ -38,9 +38,9 @@
   },
   "devDependencies": {
     "@jsenv/file-size-impact": "12.1.10",
-    "@openmrs/esm-framework": "next",
-    "@openmrs/esm-patient-common-lib": "next",
-    "@openmrs/esm-patient-forms-app": "next",
+    "@openmrs/esm-framework": "^10.0.1-pre.5462",
+    "@openmrs/esm-patient-common-lib": "^12.3.5-pre.12348",
+    "@openmrs/esm-patient-forms-app": "^12.3.5-pre.12348",
     "@swc/cli": "^0.7.9",
     "@swc/core": "^1.15.1",
     "@swc/jest": "^0.2.39",
@@ -75,7 +75,7 @@
     "jest-junit": "^15.0.0",
     "lerna": "^7.3.0",
     "lodash": "^4.17.21",
-    "openmrs": "next",
+    "openmrs": "^10.0.1-pre.5462",
     "prettier": "^3.1.1",
     "pretty-quick": "^2.0.2",
     "react": "^18.3.1",
@@ -104,11 +104,9 @@
     "semver": "^7.7.3",
     "glob": "^9.3.5",
     "webpack-dev-server": "^5.2.2",
-    "rxjs": "6.x",
-    "@types/lodash-es": "^4.17.12",
-    "lodash-es": "npm:4.17.21"
+    "rxjs": "6.x"
   },
   "dependencies": {
-    "@openmrs/webpack-config": "next"
+    "@openmrs/webpack-config": "^10.0.1-pre.5462"
   }
 }
