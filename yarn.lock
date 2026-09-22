@@ -1224,6 +1224,7 @@ __metadata:
   dependencies:
     "@carbon/charts-react": "npm:^1.5.2"
     "@carbon/react": "npm:^1.83.0"
+    "@openmrs/esm-patient-common-lib": "npm:next"
     "@types/uuid": "npm:^9.0.4"
     lodash-es: "npm:^4.17.21"
     rxjs: "npm:7.x"
@@ -1270,6 +1271,7 @@ __metadata:
     "@carbon/charts-react": "npm:^1.5.2"
     "@carbon/icons-react": "npm:^11.9.0"
     "@carbon/react": "npm:^1.83.0"
+    "@openmrs/esm-patient-common-lib": "npm:next"
     "@types/uuid": "npm:^8.3.0"
     lodash-es: "npm:^4.17.21"
     uuid: "npm:^8.3.2"
@@ -1293,6 +1295,7 @@ __metadata:
   dependencies:
     "@carbon/charts-react": "npm:^1.5.2"
     "@carbon/react": "npm:^1.83.0"
+    "@openmrs/esm-patient-common-lib": "npm:next"
     "@types/uuid": "npm:^8.3.0"
     lodash-es: "npm:^4.17.21"
     single-spa: "npm:6.x"
@@ -1319,6 +1322,7 @@ __metadata:
     "@carbon/charts-react": "npm:^1.5.2"
     "@carbon/icons-react": "npm:^11.9.0"
     "@carbon/react": "npm:^1.83.0"
+    "@openmrs/esm-patient-common-lib": "npm:next"
     "@types/uuid": "npm:^8.3.0"
     lodash-es: "npm:^4.17.21"
     uuid: "npm:^8.3.2"
@@ -1364,6 +1368,7 @@ __metadata:
   dependencies:
     "@carbon/react": "npm:^1.83.0"
     "@openmrs/esm-framework": "npm:next"
+    "@openmrs/esm-patient-common-lib": "npm:next"
     i18next: "npm:^23.10.1"
     lodash-es: "npm:^4.17.21"
     react-hook-form: "npm:^7.34.2"
@@ -1404,6 +1409,7 @@ __metadata:
   resolution: "@icrc/esm-icrc-transversal-app@workspace:packages/esm-icrc-transversal-app"
   dependencies:
     "@carbon/react": "npm:^1.83.0"
+    "@openmrs/esm-patient-common-lib": "npm:next"
     d3: "npm:^7.0.3"
     lodash-es: "npm:^4.17.21"
     webpack: "npm:^5.99.9"
@@ -1438,6 +1444,7 @@ __metadata:
   dependencies:
     "@carbon/charts-react": "npm:^1.5.2"
     "@carbon/react": "npm:^1.83.0"
+    "@openmrs/esm-patient-common-lib": "npm:next"
     d3: "npm:^7.6.1"
     lodash-es: "npm:^4.17.21"
     webpack: "npm:^5.99.9"
@@ -1461,6 +1468,7 @@ __metadata:
     "@carbon/charts-react": "npm:^1.5.2"
     "@carbon/react": "npm:^1.83.0"
     "@openmrs/esm-framework": "npm:next"
+    "@openmrs/esm-patient-common-lib": "npm:next"
     d3: "npm:^7.6.1"
     lodash-es: "npm:^4.17.21"
     webpack: "npm:^5.99.9"
@@ -1481,6 +1489,7 @@ __metadata:
   dependencies:
     "@carbon/charts-react": "npm:^1.5.2"
     "@carbon/react": "npm:^1.83.0"
+    "@openmrs/esm-patient-common-lib": "npm:next"
     d3: "npm:^7.6.1"
     lodash-es: "npm:^4.17.21"
     webpack: "npm:^5.99.9"
@@ -1504,6 +1513,7 @@ __metadata:
     "@carbon/charts-react": "npm:^1.5.2"
     "@carbon/icons-react": "npm:^11.9.0"
     "@carbon/react": "npm:^1.83.0"
+    "@openmrs/esm-patient-common-lib": "npm:next"
     d3: "npm:^7.0.3"
     lodash-es: "npm:^4.17.21"
     webpack: "npm:^5.99.9"
@@ -1528,6 +1538,7 @@ __metadata:
   dependencies:
     "@carbon/react": "npm:^1.83.0"
     "@openmrs/esm-framework": "npm:next"
+    "@openmrs/esm-patient-common-lib": "npm:next"
     lodash-es: "npm:^4.17.21"
     webpack: "npm:^5.99.9"
   peerDependencies:

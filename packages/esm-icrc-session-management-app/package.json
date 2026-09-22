@@ -33,6 +33,7 @@
   "dependencies": {
     "@carbon/react": "^1.83.0",
     "@openmrs/esm-framework": "next",
+    "@openmrs/esm-patient-common-lib": "next",
     "i18next": "^23.10.1",
     "lodash-es": "^4.17.21"
   },
