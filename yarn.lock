@@ -1295,7 +1295,6 @@ __metadata:
   dependencies:
     "@carbon/charts-react": "npm:^1.5.2"
     "@carbon/react": "npm:^1.83.0"
-    "@openmrs/esm-patient-common-lib": "npm:next"
     "@types/uuid": "npm:^8.3.0"
     lodash-es: "npm:^4.17.21"
     single-spa: "npm:6.x"
