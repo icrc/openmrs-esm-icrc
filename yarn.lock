@@ -1218,6 +1218,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@icrc/esm-icrc-contextual-info-app@workspace:packages/esm-icrc-contextual-info-app":
+  version: 0.0.0-use.local
+  resolution: "@icrc/esm-icrc-contextual-info-app@workspace:packages/esm-icrc-contextual-info-app"
+  dependencies:
+    "@carbon/react": "npm:^1.83.0"
+    single-spa: "npm:6.x"
+    single-spa-react: "npm:^6.0.0"
+    webpack: "npm:^5.99.9"
+    webpack-cli: "npm:^6.0.1"
+    webpack-dev-server: "npm:^5.2.2"
+  peerDependencies:
+    "@openmrs/esm-framework": 8.x
+    dayjs: 1.x
+    react: 18.x
+    react-i18next: 11.x
+    react-router-dom: 6.x
+    rxjs: 7.x
+  languageName: unknown
+  linkType: soft
+
 "@icrc/esm-icrc-data-sources@workspace:packages/esm-icrc-data-sources":
   version: 0.0.0-use.local
   resolution: "@icrc/esm-icrc-data-sources@workspace:packages/esm-icrc-data-sources"
@@ -1610,26 +1630,6 @@ __metadata:
     webpack: "npm:^5.99.9"
     webpack-cli: "npm:^6.0.1"
     webpack-dev-server: "npm:^5.2.2"
-  languageName: unknown
-  linkType: soft
-
-"@icrcpriv/diop-esm-icrc-contextual-info-app@workspace:packages/esm-icrc-contextual-info-app":
-  version: 0.0.0-use.local
-  resolution: "@icrcpriv/diop-esm-icrc-contextual-info-app@workspace:packages/esm-icrc-contextual-info-app"
-  dependencies:
-    "@carbon/react": "npm:^1.83.0"
-    single-spa: "npm:6.x"
-    single-spa-react: "npm:^6.0.0"
-    webpack: "npm:^5.99.9"
-    webpack-cli: "npm:^6.0.1"
-    webpack-dev-server: "npm:^5.2.2"
-  peerDependencies:
-    "@openmrs/esm-framework": 8.x
-    dayjs: 1.x
-    react: 18.x
-    react-i18next: 11.x
-    react-router-dom: 6.x
-    rxjs: 7.x
   languageName: unknown
   linkType: soft
 

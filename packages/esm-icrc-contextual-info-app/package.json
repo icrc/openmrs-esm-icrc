@@ -1,5 +1,5 @@
 {
-  "name": "@icrcpriv/diop-esm-icrc-contextual-info-app",
+  "name": "@icrc/esm-icrc-contextual-info-app",
   "version": "1.0.0",
   "license": "MPL-2.0",
   "description": "Contextual information microfrontend for the OpenMRS SPA",

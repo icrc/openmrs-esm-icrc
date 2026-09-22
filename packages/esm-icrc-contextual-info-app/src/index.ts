@@ -1,6 +1,6 @@
 import { getAsyncLifecycle } from '@openmrs/esm-framework';
 
-const moduleName = '@icrcpriv/diop-esm-icrc-contextual-info-app';
+const moduleName = '@icrc/esm-icrc-contextual-info-app';
 
 const options = {
   featureName: 'ICRC contextual information',
