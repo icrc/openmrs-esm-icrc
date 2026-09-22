@@ -8,6 +8,13 @@
     "skipDefaultLibCheck": true,
     "maxNodeModuleJsDepth": 0,
     "moduleResolution": "node",
+    "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types"],
+    "paths": {
+      "@openmrs/*": [
+        "node_modules/@openmrs/*"
+      ]
+    },
     "lib": [
       "dom",
       "es5",
@@ -24,7 +31,8 @@
     "target": "esnext"
   },
   "exclude": [
-  "**/node_modules",
-  "node_modules"
-]
+    "node_modules",
+    "**/node_modules",
+    "../../node_modules"
+  ]
 }
