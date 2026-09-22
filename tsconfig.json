@@ -5,6 +5,8 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "maxNodeModuleJsDepth": 0,
     "moduleResolution": "node",
     "lib": [
       "dom",
