@@ -125,25 +125,71 @@ Each published version carries a [provenance attestation](https://docs.npmjs.com
 
 ### Adding a package to the publish
 
-Adding a package to `packages/` is not enough. A name that has never been published needs two things set up, in this order, and until both are done `publish.yml` fails on it and stops, because it publishes topologically.
+Adding a package to `packages/` is not enough. A name that has never been published needs the steps below, in this order, and until they are done `publish.yml` fails on it and stops, because it publishes topologically.
 
-**1. Create the name on npmjs.org.** Trusted publishing cannot do this. A trusted publisher is configured on a package settings page that only exists once the package has been published, so the very first publish of a name has to be authenticated with a token. Publish one throwaway version by hand:
+> **Prerequisite:** steps 1 and 2 run under your own npm account, which must be a member of the [`icrc` organization on npmjs.org](https://www.npmjs.com/org/icrc) with publish rights on the `@icrc` scope.
+>
+> Check with `npm org ls icrc <your-npm-username>`. If you are not a member, ask an owner of the organization to invite you first, otherwise the publish is refused.
 
-```sh
-npm publish --access public --tag bootstrap
+The examples below use `@icrc/esm-icrc-contextual-info-app`. Replace it with the name of your package.
+
+**0. Check the manifest.** Copy these fields from an existing package into the new `package.json`, adjusting `directory`:
+
+```json
+"license": "BSD-3-Clause",
+"repository": {
+  "type": "git",
+  "url": "git+https://github.com/icrc/openmrs-esm-icrc.git",
+  "directory": "packages/esm-icrc-contextual-info-app"
+},
+"publishConfig": {
+  "access": "public"
+}
 ```
 
-Use a classic Automation token, or run it interactively and answer the two-factor prompt. A granular token that bypasses two-factor authentication loses direct publish capability from January 2027, so prefer the interactive route.
+Without `repository` the provenance check fails. Without `access: public` npm treats a scoped package as restricted and refuses it.
 
-**2. Configure the trusted publisher.**
+**1. Create the name on npmjs.org.** Trusted publishing cannot do this. A trusted publisher is configured on a package settings page that only exists once the package has been published, so the very first publish of a name has to be authenticated as a person. Publish one throwaway version by hand, from the root of the repository:
+
+```sh
+corepack enable
+npm login
+yarn install --immutable
+yarn turbo run build --filter=@icrc/esm-icrc-contextual-info-app
+cd packages/esm-icrc-contextual-info-app
+ORIG_VERSION="$(node -p "require('./package.json').version")"
+npm pkg set version="$(node -p "require('../../lerna.json').version")-bootstrap.0"
+npm publish --access public --tag bootstrap
+npm pkg set version="$ORIG_VERSION"
+cd ../..
+```
+
+Add `--dry-run` to `npm publish` first to check the name, version, access and tag without publishing anything.
+
+`npm login` and `npm publish` both open a browser two-factor challenge.
+
+The `-bootstrap.0` suffix sorts below the `-pre.N` versions from `publish.yml`, and the `bootstrap` dist-tag keeps it away from `pre`. npm still points `latest` at the first version published whatever the tag, and the first real release moves it on. The last `npm pkg set` puts the original version back, because the stamp must not be committed.
+
+Run it interactively as yourself. If a token is unavoidable, use a classic Automation token. A granular token that bypasses two-factor authentication loses direct publish capability from January 2027.
+
+**2. Configure the trusted publisher.** For a single new package:
+
+```sh
+npm trust github @icrc/esm-icrc-contextual-info-app \
+  --repo icrc/openmrs-esm-icrc --file publish.yml --env npm --allow-publish --yes
+```
+
+To go through every workspace instead:
 
 ```sh
 ./tools/configure-npm-trust.sh
 ```
 
-Read the header of that script first: it needs npm 11.15.0 or later, a real terminal for its browser two-factor challenge, and a login that is not a token which bypasses two-factor authentication. Use `--verify-only` to report what is currently configured.
+Read the header of that script first. Both routes need npm 11.15.0 or later (`npm install -g npm@latest`), a real terminal for the browser two-factor challenge, and a login that is not a token which bypasses two-factor authentication. Use `./tools/configure-npm-trust.sh --verify-only` to report what is currently configured.
 
 If step 2 is skipped, the publish fails with a 404, which is the same response npm gives for a package that does not exist. The message does not distinguish the two cases, so check `--verify-only` before assuming which one you have hit.
+
+**3. Validate.** Dispatch `publish.yml` with `release` unchecked. The new package should now appear on the `pre` dist-tag alongside the others.
 
 For a batch of new packages, or for another repository facing the same problem, [`tools/bootstrap-npm.yml.template`](./tools/bootstrap-npm.yml.template) is the workflow that did step 1 for the original sixteen in a single run.
 
