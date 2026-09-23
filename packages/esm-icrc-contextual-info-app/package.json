@@ -1,7 +1,7 @@
 {
   "name": "@icrc/esm-icrc-contextual-info-app",
   "version": "1.0.0",
-  "license": "MPL-2.0",
+  "license": "BSD-3-Clause",
   "description": "Contextual information microfrontend for the OpenMRS SPA",
   "browser": "dist/esm-icrc-contextual-info-app.js",
   "main": "src/index.ts",
@@ -22,6 +22,14 @@
   "keywords": [
     "openmrs"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icrc/openmrs-esm-icrc.git",
+    "directory": "packages/esm-icrc-contextual-info-app"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@carbon/react": "^1.83.0"
   },
