@@ -127,7 +127,14 @@ Each published version carries a [provenance attestation](https://docs.npmjs.com
 
 Adding a package to `packages/` is not enough. A name that has never been published needs the steps below, in this order, and until they are done `publish.yml` fails on it and stops, because it publishes topologically.
 
-The symptom in the workflow log is a 404 on the new package, followed by `The command failed for workspaces that are depended upon by other workspaces`. To check whether a name exists yet, run `npm view @icrc/<package-name> dist-tags`. A 404 means it has never been published.
+A package that has never been published makes `publish.yml` stop with:
+
+```
+The command failed in workspace @icrc/<package-name>@workspace:packages/<package-name> with exit code 1
+The command failed for workspaces that are depended upon by other workspaces; can't satisfy the dependency graph
+```
+
+Confirm with `npm view @icrc/<package-name> dist-tags`. A 404 means the name does not exist yet.
 
 > **Prerequisite:** steps 1 and 2 run under your own npm account, which must be a member of the [`icrc` organization on npmjs.org](https://www.npmjs.com/org/icrc) with publish rights on the `@icrc` scope.
 >
