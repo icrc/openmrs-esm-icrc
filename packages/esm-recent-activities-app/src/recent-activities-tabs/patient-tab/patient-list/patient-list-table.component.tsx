@@ -17,13 +17,17 @@ import { useTranslation } from 'react-i18next';
 import { useUserProperty } from '../../../api/hooks';
 import { EmptyDataIllustration, EmptyState } from '@openmrs/esm-patient-common-lib';
 
-interface PatientListTableProps {}
+interface PatientListTableProps {
+  patientUuids?: Array<string>;
+  emptyMessage?: string;
+}
 
-const PatientListTable: React.FC<PatientListTableProps> = () => {
+const PatientListTable: React.FC<PatientListTableProps> = ({ patientUuids, emptyMessage }) => {
   const { t } = useTranslation();
   const layout = useLayoutType();
   const userId = useSession()?.user.uuid;
   const { property } = useUserProperty(userId, 'lastPatients');
+  const uuids = patientUuids ?? property?.split(',');
 
   const defaultHeaders: Array<any> = useMemo(
     () => [
@@ -40,7 +44,7 @@ const PatientListTable: React.FC<PatientListTableProps> = () => {
     <div>
       <DataTable rows={[]} headers={defaultHeaders}>
         {({ rows, headers, getHeaderProps, getTableProps, getTableContainerProps }: any) => {
-          return property ? (
+          return uuids?.length ? (
             <TableContainer style={{ backgroundColor: 'transparent' }} {...getTableContainerProps()}>
               <Table {...getTableProps()} useZebraStyles>
                 <colgroup>
@@ -65,7 +69,7 @@ const PatientListTable: React.FC<PatientListTableProps> = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody className={styles.tableBody}>
-                  {property?.split(',')?.map((row) => (
+                  {uuids.map((row) => (
                     <PatientListRow patientUuid={row} key={row} />
                   ))}
                 </TableBody>
@@ -76,7 +80,7 @@ const PatientListTable: React.FC<PatientListTableProps> = () => {
               <Tile className={styles.emptyState}>
                 <EmptyDataIllustration />
                 <p className={styles.emptyStateContent}>
-                  {`${t('emptyRecentPatients', 'There are no recent patients for this user')}`}
+                  {emptyMessage ?? t('emptyRecentPatients', 'There are no recent patients for this user')}
                 </p>
               </Tile>
             </Layer>

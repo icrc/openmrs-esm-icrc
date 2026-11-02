@@ -1,0 +1,11 @@
+@use '@carbon/styles/scss/spacing';
+
+.dropdown {
+  max-width: 16rem;
+  padding: spacing.$spacing-05;
+}
+
+.loading {
+  justify-content: center;
+  padding: spacing.$spacing-05;
+}

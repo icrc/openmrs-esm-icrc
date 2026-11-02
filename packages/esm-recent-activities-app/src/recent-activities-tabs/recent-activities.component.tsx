@@ -4,12 +4,14 @@ import { Tab, Tabs, TabList, TabPanels, TabPanel } from '@carbon/react';
 import { ExtensionSlot, useConfig } from '@openmrs/esm-framework';
 import PatientTabComponent from './patient-tab/patient-tab.component';
 import { CardHeader } from '@openmrs/esm-patient-common-lib';
+import RegisteredPatientsTabComponent from './registered-patients-tab/registered-patients-tab.component';
 import EncounterTabComponent from './encounters-tab/encounter-tab.component';
 import styles from './recent-activities.scss';
 
 enum TabTypes {
   ENCOUNTERS,
   PATIENTS,
+  REGISTERED_PATIENTS,
   ALL,
 }
 
@@ -27,6 +29,7 @@ const RecentActivitiesList: React.FC = () => {
           <TabList className={styles.tabs} aria-label="List tabs">
             <Tab id={'tab-recent-encounters'}>{t('recentEncounters', 'Recent Encounters')}</Tab>
             <Tab id={'tab-recent-patients'}>{t('recentPatients', 'Recent Patients')}</Tab>
+            <Tab id={'tab-registered-patients'}>{t('registeredPatients', 'Registered Patients')}</Tab>
           </TabList>
           <TabPanels>
             <TabPanel>
@@ -34,6 +37,9 @@ const RecentActivitiesList: React.FC = () => {
             </TabPanel>
             <TabPanel>
               <PatientTabComponent />
+            </TabPanel>
+            <TabPanel>
+              <RegisteredPatientsTabComponent />
             </TabPanel>
           </TabPanels>
         </Tabs>
