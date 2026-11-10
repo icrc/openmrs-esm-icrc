@@ -215,7 +215,6 @@ const SessionsListTable: React.FC<SessionsListTableProps> = React.memo(() => {
     return new Promise<void>((resolve) => {
       const start = Date.now();
       const check = () => {
-        // o cabeçalho do paciente só existe quando o chart montou
         if (document.querySelector('[class*="patient-banner"], [data-testid="patient-banner"]') ||
             Date.now() - start > timeoutMs) {
           resolve();
