@@ -199,7 +199,8 @@ const SessionsListTable: React.FC<SessionsListTableProps> = React.memo(() => {
 
     await waitForPatientChart();
 
-    await launchWorkspace2('patient-form-entry-workspace', 
+    await launchWorkspace2(
+      'patient-form-entry-workspace',
       {
         form: {
           uuid: session.formUuid,
@@ -209,7 +210,7 @@ const SessionsListTable: React.FC<SessionsListTableProps> = React.memo(() => {
         encounterUuid: encounter.id,
       },
       {},
-      {patientUuid, patient},
+      { patientUuid, patient },
     );
   }
 
@@ -217,9 +218,10 @@ const SessionsListTable: React.FC<SessionsListTableProps> = React.memo(() => {
     return new Promise<void>((resolve) => {
       const start = Date.now();
       const check = () => {
-        if (document.querySelector('[class*="patient-banner"], [data-testid="patient-banner"]') ||
-            Date.now() - start > timeoutMs
-          ) {
+        if (
+          document.querySelector('[class*="patient-banner"], [data-testid="patient-banner"]') ||
+          Date.now() - start > timeoutMs
+        ) {
           resolve();
         } else {
           setTimeout(check, 100);
