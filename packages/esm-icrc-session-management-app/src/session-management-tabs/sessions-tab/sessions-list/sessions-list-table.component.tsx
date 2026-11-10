@@ -35,6 +35,7 @@ import {
   useLayoutType,
   showToast,
   launchWorkspace2,
+  fetchCurrentPatient,
 } from '@openmrs/esm-framework';
 import SessionsListRow from './sessions-row.component';
 import { useGroupSessions } from '../../../api/hooks';
@@ -190,20 +191,44 @@ const SessionsListTable: React.FC<SessionsListTableProps> = React.memo(() => {
   };
 
   async function handleEditEncounter(session, encounter) {
+    const patientUuid = encounter?.patientUuid;
+    const patient = await fetchCurrentPatient(patientUuid);
     await navigate({
       to: `\${openmrsSpaBase}/patient/${encounter?.patientUuid}/chart`,
     });
 
-    setTimeout(() => {
-      launchWorkspace2('patient-form-entry-workspace', {
+    await waitForPatientChart();
+
+    await launchWorkspace2(
+      'patient-form-entry-workspace',
+      {
         form: {
           uuid: session.formUuid,
           name: session.encounterTypeName,
           display: session.encounterTypeName,
         },
         encounterUuid: encounter.id,
-      });
-    }, 500);
+      },
+      {},
+      { patientUuid, patient },
+    );
+  }
+
+  function waitForPatientChart(timeoutMs = 10000) {
+    return new Promise<void>((resolve) => {
+      const start = Date.now();
+      const check = () => {
+        if (
+          document.querySelector('[class*="patient-banner"], [data-testid="patient-banner"]') ||
+          Date.now() - start > timeoutMs
+        ) {
+          resolve();
+        } else {
+          setTimeout(check, 100);
+        }
+      };
+      check();
+    });
   }
 
   const filteredRows = useMemo(() => {
