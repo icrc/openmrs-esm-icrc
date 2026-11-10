@@ -35,6 +35,7 @@ import {
   useLayoutType,
   showToast,
   launchWorkspace2,
+  fetchCurrentPatient,
 } from '@openmrs/esm-framework';
 import SessionsListRow from './sessions-row.component';
 import { useGroupSessions } from '../../../api/hooks';
@@ -43,7 +44,6 @@ import { deleteSession } from '../../../api/sessions.resource';
 import styles from './sessions-list-table.scss';
 import SessionDetailsEditModal from '../../SessionDetailsEditModal';
 import AddPatient2SessionModal from './add-group-modal/AddPatient2SessionModal';
-import { fetchCurrentPatient } from '@openmrs/esm-framework';
 
 interface SessionsListTableProps {}
 
@@ -199,7 +199,8 @@ const SessionsListTable: React.FC<SessionsListTableProps> = React.memo(() => {
 
     await waitForPatientChart();
 
-    await launchWorkspace2('patient-form-entry-workspace', {
+    await launchWorkspace2('patient-form-entry-workspace', 
+      {
         form: {
           uuid: session.formUuid,
           name: session.encounterTypeName,
@@ -208,7 +209,8 @@ const SessionsListTable: React.FC<SessionsListTableProps> = React.memo(() => {
         encounterUuid: encounter.id,
       },
       {},
-      {patientUuid, patient});
+      {patientUuid, patient},
+    );
   }
 
   function waitForPatientChart(timeoutMs = 10000) {
@@ -216,7 +218,8 @@ const SessionsListTable: React.FC<SessionsListTableProps> = React.memo(() => {
       const start = Date.now();
       const check = () => {
         if (document.querySelector('[class*="patient-banner"], [data-testid="patient-banner"]') ||
-            Date.now() - start > timeoutMs) {
+            Date.now() - start > timeoutMs
+          ) {
           resolve();
         } else {
           setTimeout(check, 100);
