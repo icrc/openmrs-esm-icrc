@@ -98,7 +98,13 @@ const SecondaryFormWorkspace: React.FC<SecondaryFormWorkspaceDefinitionProps> = 
     <Workspace2 title={formName ?? 'Form'} hasUnsavedChanges={false}>
       <div>
         {isLoading && InlineLoading ? <InlineLoading /> : null}
-        <iframe ref={iframeRef} src={src} onLoad={onLoad} style={{ width: '100%', border: 0 }} />
+        <iframe
+          ref={iframeRef}
+          src={src}
+          title={formName ?? 'Form'}
+          onLoad={onLoad}
+          style={{ width: '100%', border: 0 }}
+        />
       </div>
     </Workspace2>
   );

@@ -115,10 +115,6 @@ function onCloseMessage(event: MessageEvent) {
     return;
   }
   const handle = getSecondaryFormHandle();
-  console.debug('[icrc-open-form] close message', {
-    hasHandle: !!handle,
-    fromSecondaryForm: !!handle && event.source === handle.frameWindow,
-  });
   if (!handle || !handle.frameWindow || event.source !== handle.frameWindow) {
     return;
   }
