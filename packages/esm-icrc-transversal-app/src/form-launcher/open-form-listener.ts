@@ -19,14 +19,61 @@ interface HtmlFormEntryForm {
   formUiPage?: string;
 }
 
+function notifyFormAlreadyOpen() {
+  showSnackbar({
+    kind: 'error',
+    isLowContrast: false,
+    title: translateFrom(moduleName, 'secondaryFormAlreadyOpenTitle', 'A form is already open'),
+    subtitle: translateFrom(
+      moduleName,
+      'secondaryFormAlreadyOpenSubtitle',
+      'Close the opened form before opening another one.',
+    ),
+  });
+}
+
+/**
+ * Only HTML Form Entry pages of this server are accepted (the message comes from an iframe).
+ * @returns the path and query of the page, or null if it is not accepted
+ */
+function toFormPageUrl(formUrl: unknown): string | null {
+  try {
+    const url = new URL(String(formUrl), window.location.origin);
+    if (url.origin !== window.location.origin || !url.pathname.includes('/htmlformentryui/htmlform/')) {
+      return null;
+    }
+    return url.pathname + url.search;
+  } catch {
+    return null;
+  }
+}
+
 async function onMessage(event: MessageEvent) {
   if (event.origin !== window.location.origin || event.data?.type !== OPEN_FORM_MESSAGE_TYPE) {
     return;
   }
 
-  const { definitionUiResource, patientUuid, visitUuid } = event.data;
+  const { definitionUiResource, patientUuid, visitUuid, formUrl, formName } = event.data;
 
   try {
+    // Only one secondary form at a time.
+    if (isSecondaryFormOpen()) {
+      notifyFormAlreadyOpen();
+      return;
+    }
+
+    // A link to a specific page (e.g. an encounter to view or edit)
+    if (formUrl) {
+      const pageUrl = toFormPageUrl(formUrl);
+      if (!pageUrl) {
+        console.warn(`[icrc-open-form] Not an HTML Form Entry page of this server: "${formUrl}"`);
+        return;
+      }
+      await launchWorkspace2(SECONDARY_FORM_WORKSPACE, { formName, formUrl: pageUrl });
+      return;
+    }
+
+    // A form to enter, identified by its definition
     const { htmlFormEntryForms } = await getConfig(FORMS_APP);
     const form = (htmlFormEntryForms as Array<HtmlFormEntryForm> | undefined)?.find(
       (htmlForm) => htmlForm.formUiResource === definitionUiResource,
@@ -39,21 +86,6 @@ async function onMessage(event: MessageEvent) {
 
     if (!patientUuid) {
       console.warn('[icrc-open-form] The message has no patientUuid; the form workspace needs it');
-      return;
-    }
-
-    // Only one secondary form at a time.
-    if (isSecondaryFormOpen()) {
-      showSnackbar({
-        kind: 'error',
-        isLowContrast: false,
-        title: translateFrom(moduleName, 'secondaryFormAlreadyOpenTitle', 'A form is already open'),
-        subtitle: translateFrom(
-          moduleName,
-          'secondaryFormAlreadyOpenSubtitle',
-          'Close the opened form before opening another one.',
-        ),
-      });
       return;
     }
 

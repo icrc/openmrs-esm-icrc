@@ -6,12 +6,42 @@ import { setSecondaryFormHandle } from './secondary-form-state';
 // know the workspace v2 components, hence the namespace import and the cast.
 const { Workspace2, InlineLoading } = framework as unknown as Record<string, React.ComponentType<any>>;
 
+/** Either a ready page (formUrl) or the parts to build the page that enters a form. */
 export interface SecondaryFormWorkspaceProps {
   formName?: string;
-  formUiPage: string;
-  definitionUiResource: string;
-  patientUuid: string;
+  formUrl?: string;
+  formUiPage?: string;
+  definitionUiResource?: string;
+  patientUuid?: string;
   visitUuid?: string | null;
+}
+
+const CLOSE_RETURN_URL = 'post-message:close-workspace';
+
+function buildFormSrc({
+  formUrl,
+  formUiPage,
+  definitionUiResource,
+  patientUuid,
+  visitUuid,
+}: SecondaryFormWorkspaceProps): string {
+  if (formUrl) {
+    // The page must tell O3 to close the workspace after saving
+    const url = new URL(formUrl, window.location.origin);
+    if (!url.searchParams.has('returnUrl')) {
+      url.searchParams.set('returnUrl', CLOSE_RETURN_URL);
+    }
+    return url.pathname + url.search;
+  }
+
+  const params = new URLSearchParams();
+  params.append('patientId', patientUuid ?? '');
+  if (visitUuid) {
+    params.append('visitId', visitUuid);
+  }
+  params.append('definitionUiResource', definitionUiResource ?? '');
+  params.append('returnUrl', CLOSE_RETURN_URL);
+  return `${(window as any).openmrsBase}/htmlformentryui/htmlform/${formUiPage}.page?${params}`;
 }
 
 interface SecondaryFormWorkspaceDefinitionProps {
@@ -26,21 +56,13 @@ interface SecondaryFormWorkspaceDefinitionProps {
  */
 const SecondaryFormWorkspace: React.FC<SecondaryFormWorkspaceDefinitionProps> = ({
   closeWorkspace,
-  workspaceProps: { formName, formUiPage, definitionUiResource, patientUuid, visitUuid },
+  workspaceProps,
 }) => {
+  const { formName } = workspaceProps;
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const src = (() => {
-    const params = new URLSearchParams();
-    params.append('patientId', patientUuid);
-    if (visitUuid) {
-      params.append('visitId', visitUuid);
-    }
-    params.append('definitionUiResource', definitionUiResource);
-    params.append('returnUrl', 'post-message:close-workspace');
-    return `${(window as any).openmrsBase}/htmlformentryui/htmlform/${formUiPage}.page?${params}`;
-  })();
+  const src = buildFormSrc(workspaceProps);
 
   // The message interceptor (open-form-listener.ts) closes this workspace when the form posts
   // 'close-workspace', without closing the other forms that are open.
