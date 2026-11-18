@@ -67,5 +67,22 @@
       "online": true,
       "offline": true
     }
+  ],
+  "workspaces2": [
+    {
+      "name": "icrc-secondary-form-entry-workspace",
+      "component": "icrcSecondaryFormWorkspace",
+      "window": "icrc-secondary-forms"
+    }
+  ],
+  "workspaceWindows2": [
+    {
+      "name": "icrc-secondary-forms",
+      "icon": "icrcSecondaryFormsActionButton",
+      "order": 4,
+      "group": "patient-chart",
+      "width": "extra-wide",
+      "canMaximize": true
+    }
   ]
 }
