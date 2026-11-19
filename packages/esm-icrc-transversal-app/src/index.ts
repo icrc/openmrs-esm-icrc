@@ -1,6 +1,7 @@
 import { defineConfigSchema, getAsyncLifecycle } from '@openmrs/esm-framework';
 import { transversalAppSchema as configSchema } from './config-schema';
 import { moduleName } from './constants';
+import { registerOpenFormListener } from './form-launcher/open-form-listener';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -11,6 +12,7 @@ const options = {
 
 export function startupApp() {
   defineConfigSchema(moduleName, configSchema);
+  registerOpenFormListener();
 }
 
 export const markPatientDeceased = getAsyncLifecycle(
@@ -48,5 +50,15 @@ export const reportsPage = getAsyncLifecycle(() => import('./reports-widget/repo
 
 export const fastDataEntrySidebarLink = getAsyncLifecycle(
   () => import('./fast-data-entry/fast-data-entry-sidebar-link'),
+  options,
+);
+
+export const icrcSecondaryFormWorkspace = getAsyncLifecycle(
+  () => import('./form-launcher/secondary-form.workspace'),
+  options,
+);
+
+export const icrcSecondaryFormsActionButton = getAsyncLifecycle(
+  () => import('./form-launcher/secondary-forms-action-button.component'),
   options,
 );
